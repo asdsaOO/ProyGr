@@ -1,0 +1,6 @@
+.text-red {
+  color: brown;
+}
+.nav-pills li a:hover{
+  background-color: brown;
+}
