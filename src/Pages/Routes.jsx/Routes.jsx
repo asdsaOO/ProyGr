@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import { ActivitiesAdmPag } from "../ActivitiesAdmPag";
 import { createBrowserRouter } from "react-router-dom";
 import { ProgressAdmPag } from "../ProgressAdmPag";
@@ -38,6 +39,10 @@ function routerApp (){
         {
           path:"Activities",
           element:<ActivitiesAdmPag/>
+        },
+        {
+          path: "",
+          element: <Navigate to="Topics" replace />,
         }
         
       ]
