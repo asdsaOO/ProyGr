@@ -1,5 +1,21 @@
 import * as services from '../Services/TopicsAdmServ'
 
+async function datosPagina (){
+  //datos del form
+  const titulos = await services.listarTemas();
+  const titulosSelect = [];
+  titulos.forEach((data)=>{
+    var objeto = {
+      value:data.id,
+      text:data.titulo
+    }
+    titulosSelect.push(objeto)
+  })
+  const data ={
+    "titulosSelect":titulosSelect
+  }
+  return data;
+}
 async function agregarTema(e){
   e.preventDefault();
   const formdata= new FormData(e.target);
@@ -8,13 +24,18 @@ async function agregarTema(e){
   const response=await services.agregarTemas(dataObj);
 
   return response;
-  
-  
-
+}
+async function listarTemas(){
+  const response = await services.listarTemas();
+  return response;
 }
 
-function eliminarTema(e){
-
+async function eliminarTema(id,tipo){
+  const enviar = {
+    idTema:id,
+    tipo:tipo
+  }
+  const response = await services.eliminarTema(enviar);
+  return response;
 }
-
-export {agregarTema,eliminarTema}
+export {agregarTema,eliminarTema,listarTemas,datosPagina}

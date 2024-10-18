@@ -1,8 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { useFuture } from "./Hooks/useFuture";
 
-function TopicsAcordeonComp(props) {
+function TopicsAcordeonComp(props) {  
   return (
     <>
       <div className="accordion" id="accordionPanelsStayOpenExample">
@@ -31,8 +32,8 @@ function TopicsAcordeonComp(props) {
                       </button>
                     </div>
 
-                    {item.subtemas ? (
-                      item.subtemas.map((subItem, subIndex) => (
+                    {item.subtitulos&&item.subtitulos.length>0 ? (
+                      item.subtitulos.map((subItem, subIndex) => (
                         <div className="accordion" id="nestedAccordionOne">
                           <div className="accordion-item">
                             <h2 className="accordion-header">
@@ -47,10 +48,10 @@ function TopicsAcordeonComp(props) {
                                   <p>{subItem.descripcion}</p>
                                 </div>
                                 <div className="col-2">
-                                  <button className="btn btn-danger">
+                                  <button className="btn btn-danger" onClick={()=>{props.eliminarTema(subItem.id,"subtema")}}>
                                     <i className="bi bi-trash-fill"></i>
                                   </button>
-                                  <button className="btn btn-warning">
+                                  <button className="btn btn-warning" onClick={()=>props.openUpModal()}>
                                     <i className="bi bi-pencil-square"></i>
                                   </button>
                                 </div>
@@ -67,7 +68,8 @@ function TopicsAcordeonComp(props) {
               </div>
             )
             ) 
-          ) : <a>No hay temas registrados</a>
+          ) : <a>No hay temas</a>
+          
         }
       </div>
     </>

@@ -9,20 +9,24 @@ async function agregarTemas(data){
     tema:data.temaInp,
     descripcion:data.descripcionInp,
     indice:data.numeracionInp,
-    tipo:data.tipo
+    tipo:data.tipo,
+    idTema:data.idTema
   }
-  /*const datosEnviar={
-    tema: "Nuevo Tema",
-    descripcion: "Descripción del nuevo tema",
-    indice: 1,
-    tipo: "tema"
-  }*/
   console.log(datosEnviar);
   const response = (await axios.post(url+"/agregar",datosEnviar)).data;
   console.log(response);
   return response;
-  
-  
-
 }
-export{agregarTemas}
+
+async function listarTemas (){
+  const response = (await axios.get(url+"/listar")).data;
+  console.log(response);
+  return response
+}
+async function eliminarTema(data){
+  console.log("servicio eliminar tema");
+  console.log(data);
+  const response = (await axios.delete(url+"/eliminar",{data:data})).data;
+  return response;
+}
+export{agregarTemas,listarTemas,eliminarTema}
