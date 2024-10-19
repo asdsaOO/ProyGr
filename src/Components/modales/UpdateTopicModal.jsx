@@ -1,12 +1,12 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle'
 import { InputComp } from "../InputFormComp";
 import { TextAreaForm } from "../TextAreaForm";
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 function UpdateTopicModal(props) {
-  return (
+return (
     <>
         <div className="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div className="modal-dialog">
@@ -41,5 +41,4 @@ function UpdateTopicModal(props) {
     </>
   )
 }
-
-export { UpdateTopicModal }
+export{UpdateTopicModal}

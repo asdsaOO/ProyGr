@@ -8,7 +8,8 @@ import * as controller from "../Controllers/TopicsAdmControl"
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { useFuture } from "../Components/Hooks/useFuture";
-import { UpdateTopicModal } from "../Components/modal/UpdateTopicModal";
+import { UpdateTopicModal } from "../Components/modales/UpdateTopicModal";
+
 
 function TopicsAdmPag() {
   //hoooooks

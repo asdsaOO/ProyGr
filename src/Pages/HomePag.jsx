@@ -1,7 +1,8 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
+//
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import 'bootstrap/js/dist/dropdown'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../Style/SideNav.css'
 import { Outlet,Link } from "react-router-dom";
 
