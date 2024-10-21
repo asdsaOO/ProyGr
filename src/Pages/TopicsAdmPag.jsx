@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { useFuture } from "../Components/Hooks/useFuture";
 import { UpdateTopicModal } from "../Components/modales/UpdateTopicModal";
+import { useModalCaller } from "../Components/Hooks/useModalCaller";
 
 
 function TopicsAdmPag() {
@@ -17,6 +18,7 @@ function TopicsAdmPag() {
   const [carga, temas_datos] = useFuture(controller.listarTemas);
   const [tipoTema, setTipoTema] = useState("tema");
   const [activeUpModal,setActiveUpM]=useState(false);
+  const [dataUpModal,statusUpModal  ,activeUpModal0,closeUpModal]=useModalCaller(false);
   ///////////////////////////////////////////////////////////////////////
   const eliminarTema= async (id,tipo)=>{
     const response = await controller.eliminarTema(id,tipo)
@@ -121,12 +123,15 @@ function TopicsAdmPag() {
             {carga ? <a>cargando</a> : <TopicsAcordeonComp 
                                         temas={temas_datos} 
                                         eliminarTema={eliminarTema} 
-                                        openUpModal={()=>setActiveUpM(true)}/>}
+                                        openUpModal={activeUpModal0}/>
+            }
           </div>     
          </>
       )}
-      {activeUpModal?<UpdateTopicModal
-        closeModal={()=>{setActiveUpM(false)}}
+      {statusUpModal?<UpdateTopicModal
+        closeModal={closeUpModal}
+        data={dataUpModal}
+        confirmUpdate={controller.actualizarTema}
       />:null}
       
       

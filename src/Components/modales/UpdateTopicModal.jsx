@@ -10,7 +10,7 @@ return (
     <>
         <div className="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div className="modal-dialog">
-            <form>
+            <form onSubmit={props.confirmUpdate}>
             <div className="modal-content">
               <div className="modal-header">
                 <h1 className="modal-title fs-5" id="staticBackdropLabel">MODIFICAR TITULO</h1>
@@ -21,6 +21,7 @@ return (
                   <InputComp
                    text="Titulo"
                    name="inpTitulo"
+                   value={props.data.titulo}
                    />
 
                 </div>
@@ -28,6 +29,7 @@ return (
                   <TextAreaForm
                    text="Descripcion"
                    name="inpDescripcion"
+                   value={props.data.descripcion}
                   />
                 </div>
               </div>

@@ -38,4 +38,13 @@ async function eliminarTema(id,tipo){
   const response = await services.eliminarTema(enviar);
   return response;
 }
-export {agregarTema,eliminarTema,listarTemas,datosPagina}
+
+async function actualizarTema(e){
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data=Object.fromEntries(formData);
+  console.log(data);
+  
+
+}
+export {agregarTema,eliminarTema,listarTemas,datosPagina,actualizarTema}

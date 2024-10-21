@@ -26,10 +26,12 @@ function TopicsAcordeonComp(props) {
                       <p>{item.descripcion}</p>
                     </div>
                     <div className="col-2 mb-3" >
-                      <button className="btn btn-danger">
+                      <button className="btn btn-danger" onClick={()=>props.eliminarTema(item.id,"tema")}>
                         <i className="bi bi-trash-fill"></i>
                       </button>
-                      <button className="btn btn-warning">
+                      <button className="btn btn-warning" onClick={()=>props.openUpModal({titulo:item.titulo,
+                                                                                          id:item.id,
+                                                                                          descripcion:item.descripcion})}>
                         <i className="bi bi-pencil-square"></i>
                       </button>
                     </div>
@@ -53,7 +55,9 @@ function TopicsAcordeonComp(props) {
                                   <button className="btn btn-danger" onClick={()=>{props.eliminarTema(subItem.id,"subtema")}}>
                                     <i className="bi bi-trash-fill"></i>
                                   </button>
-                                  <button className="btn btn-warning" onClick={()=>props.openUpModal()}>
+                                  <button className="btn btn-warning" onClick={()=>props.openUpModal({id:subItem.id,
+                                                                                                      titulo:subItem.titulo,
+                                                                                                      descripcion:subItem.descripcion})}>
                                     <i className="bi bi-pencil-square"></i>
                                   </button>
                                 </div>
