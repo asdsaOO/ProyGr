@@ -7,10 +7,6 @@
   useEffect(()=>{
     action().then((resp)=>{
       setdata(resp);
-      console.log("data "+data);
-      console.log("respones "+resp);
-      
-      
       setcarga(false);
     });
     

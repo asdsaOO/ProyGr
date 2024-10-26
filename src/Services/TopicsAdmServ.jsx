@@ -29,4 +29,18 @@ async function eliminarTema(data){
   const response = (await axios.delete(url+"/eliminar",{data:data})).data;
   return response;
 }
-export{agregarTemas,listarTemas,eliminarTema}
+
+async function modificarTema(data){
+  try{
+  console.log("servicio modificar tema");
+  console.log(data);
+  const response = (await axios.put(url+"/modificar",data)).data;
+  console.log("respuesta servicio");
+  console.log(response);
+  return response
+  }catch(e){
+    console.log("ERRORSERVICE: "+e);
+    return [{oMessage:"ERROR EN SERVICIOS: COMUNIQUESE CON EL SOPORTE", oBoolean:false}]
+  }
+}
+export{agregarTemas,listarTemas,eliminarTema,modificarTema}

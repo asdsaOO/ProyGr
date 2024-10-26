@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
+import { useFuture } from '../Components/Hooks/useFuture';
+import { SelectFormComp } from '../Components/SelectFormComp';
+import * as control from '../Controllers/loginControl';
+import Swal from 'sweetalert2';
 
 function Copyright(props) {
   return (
@@ -27,20 +31,28 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
+  const [cargaPagina,dataPagina]=useFuture(control.datosPagina);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    
-    navigate('Home');
+    const response = await control.autenticarUsuario(event);
+    if(!response[0].oboolean){
+      Swal.fire({
+        title:'Hubo un problema!',
+        text: response[0].omessage,
+        icon:'warning',
+        confirmButtonText:'aceptar',
+        confirmButtonColor: '#ce3124 '
+      })
+    }else{
+      console.log(response);
+      
+    }
   };
 
   return (
+    <div>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -64,7 +76,7 @@ export default function SignIn() {
             fullWidth
             id="email"
             label="Email Address"
-            name="email"
+            name="inpEmail"
             autoComplete="email"
             autoFocus
           />
@@ -72,14 +84,20 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="inpPassword"
             label="Password"
             type="password"
             id="password"
             autoComplete="current-password"
           />
+          <SelectFormComp
+            onchange={(e)=>e.target.value}
+            name="idRol"
+            text="Rol"
+            options={dataPagina.rolesSelect}
+          />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox name="checkRecordar" value="true" color="primary" />}
             label="Remember me"
           />
           <Button
@@ -106,6 +124,7 @@ export default function SignIn() {
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
+    </div>
   );
 }
 

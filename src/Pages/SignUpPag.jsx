@@ -9,6 +9,11 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useFuture } from '../Components/Hooks/useFuture';
+import * as controller from '../Controllers/signUpControl';
+import { SelectFormComp } from '../Components/SelectFormComp';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -24,19 +29,48 @@ function Copyright(props) {
 }
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const [cargaPagina,dataPagina]= useFuture(controller.datosPagina);
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    console.log('handle');
+    
+    const response=await controller.registrarUsuario(event);
+    /*const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
       firstName: data.get('firstName'),
       lastName: data.get('lastName')
-    });
+    });*/
+    console.log(response);
+    if(response[0].oboolean){
+      Swal.fire(
+        {
+          title:'Se registro correctamente',
+          text:'El registro se realizo exitosamente, podras ingresar una vez habilitado por el docente.',
+          icon:'success',
+          confirmButtonText:'aceptar'
+        }
+      ).then((result)=>result.isConfirmed?navigate('/'):null);
+
+    }else{
+      Swal.fire({
+        title:'Hubo un problema!',
+        text:'Error: '+response[0].omessage,
+        icon:'error',
+        confirmButtonText:'aceptar'
+      })
+    }
+    
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div>
+      {cargaPagina?<a>cargando</a>
+      :
+      <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
@@ -57,7 +91,7 @@ export default function SignUp() {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
-                name="firstName"
+                name="inpNombre"
                 required
                 fullWidth
                 id="firstName"
@@ -71,7 +105,7 @@ export default function SignUp() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
+                name="inpApellido"
                 autoComplete="family-name"
               />
             </Grid>
@@ -79,9 +113,10 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                type='email'
                 id="email"
                 label="Email Address"
-                name="email"
+                name="inpEmail"
                 autoComplete="email"
               />
             </Grid>
@@ -89,11 +124,19 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
-                name="password"
+                name="inpPassword"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SelectFormComp
+                onchange={(e)=>e.target.value}
+                name="idRol"
+                text="Roll"
+                options={dataPagina.rolesSelect}
               />
             </Grid>
           </Grid>
@@ -116,7 +159,11 @@ export default function SignUp() {
       </Box>
       <Copyright sx={{ mt: 5 }} />
     </Container>
+      }
+    
+    </div>
   );
+ 
 }
 
 export {SignUp}

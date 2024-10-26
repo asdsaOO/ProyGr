@@ -17,7 +17,6 @@ function TopicsAdmPag() {
   const [cargaPagina, dataPag] = useFuture(controller.datosPagina);
   const [carga, temas_datos] = useFuture(controller.listarTemas);
   const [tipoTema, setTipoTema] = useState("tema");
-  const [activeUpModal,setActiveUpM]=useState(false);
   const [dataUpModal,statusUpModal  ,activeUpModal0,closeUpModal]=useModalCaller(false);
   ///////////////////////////////////////////////////////////////////////
   const eliminarTema= async (id,tipo)=>{
@@ -28,7 +27,7 @@ function TopicsAdmPag() {
         text: 'Se elimino el tema',
         icon: 'success',
         confirmButtonText: 'aceptar'
-      })
+      }).then((result)=>result.isConfirmed?window.location.reload():bull)
     }else{
       Swal.fire({
         title:'Error',
@@ -42,19 +41,47 @@ function TopicsAdmPag() {
     const response = await controller.agregarTema(e);
     if (response[0].oboolean == true) {
       Swal.fire({
-        title: 'Error!',
+        title: 'Realizado con exito',
         text: 'Se registro correctamente',
         icon: 'success',
         confirmButtonText: 'aceptar'
-      })
+      }).then((result)=>result.isConfirmed?window.location.reload():null)
     } else {
       Swal.fire({
         title: 'Error!',
         text: 'Algo salio mal',
         icon: 'error',
-        confirmButtonText: 'Cool'
+        confirmButtonText: 'ok'
       })
     }
+  }
+  const modificarTema=async(e)=>{
+    const response = await controller.actualizarTema(e);
+    if(response[0].oboolean==false){
+      Swal.fire({
+        title: 'Error!',
+        text: response[0].oMessage?response[0].oMessage:'error inesperado',
+        icon: 'error',
+        confirmButtonText:'ok'
+
+      })
+
+    }else{
+      Swal.fire({
+        title: 'Realizado con exito',
+        text: 'Se actualizo correctamente',
+        icon: 'success',
+        confirmButtonText: 'aceptar'
+      }).then((result)=>{
+        if(result.isConfirmed){
+          window.location.reload();
+
+        }
+      
+      })
+
+    }
+
   }
   return (
     <div className="mb-4 col-10">
@@ -131,7 +158,7 @@ function TopicsAdmPag() {
       {statusUpModal?<UpdateTopicModal
         closeModal={closeUpModal}
         data={dataUpModal}
-        confirmUpdate={controller.actualizarTema}
+        confirmUpdate={modificarTema}
       />:null}
       
       

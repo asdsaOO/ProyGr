@@ -43,8 +43,17 @@ async function actualizarTema(e){
   e.preventDefault();
   const formData = new FormData(e.target);
   const data=Object.fromEntries(formData);
-  console.log(data);
-  
+  const dataSend={
+    "id":data.inpId,
+    "descripcion":data.inpDescripcion,
+    "titulo":data.inpTitulo,
+    "tipo":data.inpTipo
+  }
+  console.log("controlador datos recibidos");
+  console.log(dataSend);
+
+  const response = await services.modificarTema(dataSend);
+  return response;
 
 }
 export {agregarTema,eliminarTema,listarTemas,datosPagina,actualizarTema}
