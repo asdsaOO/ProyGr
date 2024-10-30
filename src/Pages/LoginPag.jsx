@@ -47,6 +47,7 @@ export default function SignIn() {
       })
     }else{
       console.log(response);
+      navigate('/Home');
       
     }
   };

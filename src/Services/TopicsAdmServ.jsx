@@ -13,7 +13,7 @@ async function agregarTemas(data){
     idTema:data.idTema
   }
   console.log(datosEnviar);
-  const response = (await axios.post(url+"/agregar",datosEnviar)).data;
+  const response = (await axios.post(url+"/agregar",datosEnviar,{withCredentials:true})).data;
   console.log(response);
   return response;
 }
