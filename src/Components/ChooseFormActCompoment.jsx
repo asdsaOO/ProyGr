@@ -6,6 +6,7 @@ import { TextAreaForm } from "./TextAreaForm";
 function CompleteFormActComponent() {
   const [textoGenerado, setTextoGenerado] = useState('');
   const [palabraClave, setPalabraClave] = useState('');
+
   
   const manejarFrase = (e) => {
     const frase = e.target.value;
