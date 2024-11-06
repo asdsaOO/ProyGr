@@ -2,83 +2,132 @@ import React, { useState } from "react";
 import { SelectFormComp } from "./SelectFormComp";
 import { InputComp } from "./InputFormComp";
 import { TextAreaForm } from "./TextAreaForm";
-
-function CompleteFormActComponent() {
-  const [textoGenerado, setTextoGenerado] = useState('');
-  const [palabraClave, setPalabraClave] = useState('');
-
-  
-  const manejarFrase = (e) => {
-    const frase = e.target.value;
-    // Reemplaza "_" con la palabra clave actual
-    setTextoGenerado(frase.replace(/_/g, palabraClave));
-  };
-
-  const manejarPalabraClave = (e) => {
-    const nuevaPalabraClave = e.target.value.trim();
-    // Crea una expresión regular con la palabra clave actual
-    const regex = new RegExp(palabraClave, 'g');
-
-    // Actualiza el estado de la palabra clave
-    setPalabraClave(nuevaPalabraClave);
-    
-    // Reemplaza la palabra clave actual en el texto generado con la nueva palabra clave
-    setTextoGenerado((prevTextoGenerado) => prevTextoGenerado.replace(regex, nuevaPalabraClave));
-  };
-
+import { CheckformComp } from "./checkFormComp";
+import { useExclusiveToggle } from "./Hooks/useExclusiveToggle";
+import { useMultipleOptions } from "./Hooks/useMultipleOpcions";
+import { ButtonFormComp } from "./ButtonFormComp";
+import { callSwal } from "../helpers/throwSwalA";
+import { useFutureReloadable } from "./Hooks/useFutureReloadable";
+import * as control from "../Controllers/ActivitiesAdmControl";
+function ChooseFormActComponent(props) {
+  const [items, changeItems] = useExclusiveToggle();
+  const [itemsValues, changeValues] = useMultipleOptions([``, ``, ``]);
+  const [cargandoSubtemas,subtemas,recargarSubtemas]=useFutureReloadable(control.listarSubtema);
   return (
     <div className="row mb-4">
-      <div className="row mb-4">
-        <div className="col-6">
-          <InputComp
-            text="Descripcion"
-            placeholder="Ingrese el nombre de su actividad"
-          />
+        <div className="row mb-4">
+
+          <div className="col-5">
+            <InputComp
+              text="Descripcion"
+              placeholder="Ingresa descripcion"
+              name="inpDescrpcion"
+            />
+          </div>
+
         </div>
-        <div className="col-4">
-          <InputComp
-            text="Palabra clave"
-            placeholder="Ingrese la palabra clave"
-            onChange={manejarPalabraClave}
-          />
+        <div className="row mb-4">
+          <div className="col-5">
+            <SelectFormComp
+              text="Titulo:"
+              name="inpTema"
+              options={props.titulos}
+              onchange={(e)=>recargarSubtemas(e.target.value)
+              }
+              
+            />
+          </div>
+          <div className="col-5">
+            {
+              !cargandoSubtemas?
+              <SelectFormComp
+              text="Subtitulo:"
+              name="inpSubtema"
+              options={subtemas}
+            />
+            :
+            <a> cargando </a>
+            }
+            
+          </div>
         </div>
-      </div>
-      <div className="row mb-4">
-        <div className="col-5">
-          <SelectFormComp
-            text="Seleccionar Titulo:"
-            name="inpTitulo"
-            options={[]}
-          />
+        <div className="row mb-4">
+          <div className="col-5">
+            <InputComp
+              text="Pregunta"
+              placeholder="Ingresa la pregunta"
+              name="inpEnunciado"
+            />
+          </div>
         </div>
-        <div className="col-5">
-          <SelectFormComp
-            text="Seleccionar Subtitulo:"
-            name="inpSubtitulo"
-            options={[]}
-          />
+        <div className="row mb-4">
+          <div className="row mb-2 ">
+            <div className="col-auto pt-4 ">
+              <CheckformComp
+                index={0}
+                active={changeItems}
+                checked={items[0]}
+                value={itemsValues[0]}
+                name="inpRespuesta"
+              />
+            </div>
+            <div className="col-auto ">
+              <InputComp
+                placeholder="Ingresa opcion 1"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  changeValues(0, value)
+                }}
+                name="inpOpcion1"
+              />
+            </div>
+          </div>
+          <div className="row mb-2">
+            <div className="col-auto pt-4">
+              <CheckformComp
+                index={1}
+                active={changeItems}
+                checked={items[1]}
+                value={itemsValues[1]}
+                name="inpRespuesta"
+              />
+            </div>
+            <div className="col-auto">
+              <InputComp
+                placeholder="Ingresa opcion 1"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  changeValues(1, value)
+                }}
+                name="inpOpcion2"
+              />
+            </div>
+          </div>
+          <div className="row mb-2">
+            <div className="col-auto pt-4">
+              <CheckformComp
+                index={2}
+                active={changeItems}
+                checked={items[2]}
+                value={itemsValues[2]}
+                name="inpRespuesta"
+              />
+            </div>
+            <div className="col-auto">
+              <InputComp
+                placeholder="Ingresa opcion 1"
+                onChange={(e) => {
+                  const value = e.target.value;
+                  changeValues(2, value)
+                }}
+                name="inpOpcion3"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="row mb-4">
-        <div className="col-10">
-          <TextAreaForm
-            text="Frase"
-            placeholder="Ingrese la frase que de la actividad, recuerda poner _ donde deseas la palabra clave"
-            onChange={manejarFrase}
-          />
-        </div>
-      </div>
-      <div className="row mb-4">
-        <div className="col-10">
-          <TextAreaForm
-            text="Frase generada"
-            disabled={true}
-            value={textoGenerado.trim()}
-          />
-        </div>
-      </div>
+        
     </div>
   );
 }
 
-export { CompleteFormActComponent };
+export { ChooseFormActComponent }

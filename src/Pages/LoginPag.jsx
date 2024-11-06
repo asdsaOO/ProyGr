@@ -47,7 +47,19 @@ export default function SignIn() {
       })
     }else{
       console.log(response);
-      navigate('/Home');
+      //navigate('/Home');
+      const rol = parseInt(control.getUserRoleFromCookie());
+      console.log(rol);
+      if(rol===1){
+        navigate('/Home');
+      }else if(rol===4){
+        navigate('/studentHome');
+
+      }else{
+        console.log("nada");
+        
+      }
+      
       
     }
   };

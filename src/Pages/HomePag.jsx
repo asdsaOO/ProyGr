@@ -6,10 +6,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../Style/SideNav.css'
 import { Outlet,Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
 function HomePag() {
+  const navigate = useNavigate();
   return (
     <div className='container-fluid'>
       <div className="row">
@@ -67,7 +69,7 @@ function HomePag() {
 
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <li><a className="dropdown-item" href="#">Datos de Usuario</a></li>
-              <li><a className="dropdown-item" href="#">Salir de Cuenta</a></li>
+              <li><a className="dropdown-item" href="#" onClick={()=>navigate('/')}>Salir de Cuenta</a></li>
             </ul>
           </div>
 

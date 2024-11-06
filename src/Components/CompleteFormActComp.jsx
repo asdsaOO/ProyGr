@@ -2,27 +2,27 @@ import React, { useState } from "react";
 import { SelectFormComp } from "./SelectFormComp";
 import { InputComp } from "./InputFormComp";
 import { TextAreaForm } from "./TextAreaForm";
+import { useFutureReloadable } from "./Hooks/useFutureReloadable";
+import * as control from "../Controllers/ActivitiesAdmControl"
 
-function CompleteFormActComponent() {
+function CompleteFormActComponent(props) {
   const [textoGenerado, setTextoGenerado] = useState('');
+  const [fraseOriginal, setFraseOriginal] = useState(''); // Estado para la frase original con los guiones bajos
   const [palabraClave, setPalabraClave] = useState('');
-  
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const [cargandoSubtemas, subtemas, recargarSubtemas] = useFutureReloadable(control.listarSubtema);
+
   const manejarFrase = (e) => {
     const frase = e.target.value;
-    // Reemplaza "_" con la palabra clave actual
-    setTextoGenerado(frase.replace(/_/g, palabraClave));
+    setFraseOriginal(frase); // Guarda la frase original con guiones bajos
+    setTextoGenerado(frase.replace(/_/g, palabraClave)); // Genera la frase con la palabra clave actual
   };
 
   const manejarPalabraClave = (e) => {
     const nuevaPalabraClave = e.target.value.trim();
-    // Crea una expresión regular con la palabra clave actual
-    const regex = new RegExp(palabraClave, 'g');
-
-    // Actualiza el estado de la palabra clave
     setPalabraClave(nuevaPalabraClave);
-    
-    // Reemplaza la palabra clave actual en el texto generado con la nueva palabra clave
-    setTextoGenerado((prevTextoGenerado) => prevTextoGenerado.replace(regex, nuevaPalabraClave));
+    // Usa la frase original para generar el texto actualizado
+    setTextoGenerado(fraseOriginal.replace(/_/g, nuevaPalabraClave));
   };
 
   return (
@@ -32,6 +32,7 @@ function CompleteFormActComponent() {
           <InputComp
             text="Descripcion"
             placeholder="Ingrese el nombre de su actividad"
+            name="inpDescripcion"
           />
         </div>
         <div className="col-4">
@@ -39,6 +40,7 @@ function CompleteFormActComponent() {
             text="Palabra clave"
             placeholder="Ingrese la palabra clave"
             onChange={manejarPalabraClave}
+            name="inpRespuesta"
           />
         </div>
       </div>
@@ -46,16 +48,23 @@ function CompleteFormActComponent() {
         <div className="col-5">
           <SelectFormComp
             text="Seleccionar Titulo:"
-            name="inpTitulo"
-            options={[]}
+            name="inpTema"
+            options={props.titulos}
+              onchange={(e)=>recargarSubtemas(e.target.value)
+            }
           />
         </div>
         <div className="col-5">
-          <SelectFormComp
-            text="Seleccionar Subtitulo:"
-            name="inpSubtitulo"
-            options={[]}
-          />
+          {
+            !cargandoSubtemas ?
+              <SelectFormComp
+                text="Subtitulo:"
+                name="inpSubtema"
+                options={subtemas}
+              />
+              :
+              <a> cargando </a>
+          }
         </div>
       </div>
       <div className="row mb-4">
@@ -64,6 +73,7 @@ function CompleteFormActComponent() {
             text="Frase"
             placeholder="Ingrese la frase que de la actividad, recuerda poner _ donde deseas la palabra clave"
             onChange={manejarFrase}
+            name="inpEnunciado"
           />
         </div>
       </div>

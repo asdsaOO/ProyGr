@@ -4,9 +4,9 @@ import { useState, useEffect } from "react"
 function useFutureReloadable(action){
  const [cargando,setcarga] = useState(true);
  const [data, setdata]=useState([]);
- const handleData = ()=>{
+ const handleData = (variable)=>{
   setcarga(true);
-  action().then((resp)=>{
+  action(variable?variable:null).then((resp)=>{
   setdata(resp);
   setcarga(false);
 });

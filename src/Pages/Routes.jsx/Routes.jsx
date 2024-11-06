@@ -8,6 +8,7 @@ import { TopicsAdmPag } from "../TopicsAdmPag";
 import {SignIn} from "../LoginPag";
 import {SignUp} from "../SignUpPag"
 import { HomePag } from "../HomePag";
+import { StudentHome } from "../StudentHome";
 
 function routerApp (){
   return createBrowserRouter([
@@ -46,6 +47,10 @@ function routerApp (){
         }
         
       ]
+    },
+    {
+      path:"/studentHome",
+      element:<StudentHome/>
     }
   ])
 }

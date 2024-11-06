@@ -19,7 +19,7 @@ async function agregarTemas(data){
 }
 
 async function listarTemas (){
-  const response = (await axios.get(url+"/listar")).data;
+  const response = (await axios.get(url+"/listar",{withCredentials:true})).data;
   console.log(response);
   return response
 }

@@ -3,8 +3,8 @@ import React from "react";
 function CheckformComp(props) {
   return (
     <div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value={props.value} 
+      <div className="form-check">
+        <input className="form-check-input" type="checkbox" value={props.value} 
                id={props.id} name={props.name} checked={props.checked}
                onChange={(e)=>{
                 if(e.target.checked){
@@ -13,8 +13,8 @@ function CheckformComp(props) {
                 }
 
                }}/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Default checkbox
+        <label className="form-check-label" htmlFor="flexCheckDefault">
+          {props.text}
         </label>
       </div>
     </div>
