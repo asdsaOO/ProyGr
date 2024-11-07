@@ -3,6 +3,8 @@ import * as throwSwal from "../helpers/throwSwalA"
 import * as services from "../Services/ActivitiesAdmServ"
 async function datosPagina(){
   const titulos = await services.listarTemas();
+  await services.listarActividades();
+
   const titulosSelect = [];
   titulos.forEach((data)=>{
     var objeto = {
@@ -60,6 +62,18 @@ async  function crearHangManAct(e){
   e.preventDefault();
   console.log("crear ahorcado");
   
+}
+
+async function listarActividades(){
+  try{
+    const resp = services.listarActividades();
+    console.log(resp);
+    
+
+  }catch(e){
+    console.log(e);
+    
+  }
 }
 
 export{crearEleccionMultiple,

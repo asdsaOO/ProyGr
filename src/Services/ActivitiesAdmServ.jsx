@@ -1,5 +1,6 @@
 
 import axios from "axios";
+const url="http://localhost:3000/api/actividades";
 const url2="http://localhost:3000/api/topics";
 async function listarTemas (){
   const response = ((await axios.get(url2+"/listar",{withCredentials:true})).data);
@@ -14,5 +15,10 @@ async function listarSubtemas(data){
   console.log(response);
   return response;
 }
+async function listarActividades(){
+  const resp= (await (axios.get(url+"/listarActividades",{withCredentials:true}))).data;
+  console.log(resp);
+  
+}
 
-export{listarTemas,listarSubtemas}
+export{listarTemas,listarSubtemas,listarActividades}
