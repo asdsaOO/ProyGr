@@ -1,8 +1,8 @@
 import Swal from "sweetalert2"
-function callSwal(tittle,resp,next){
+function callSwal(resp,next,message){
     Swal.fire({
-      title:tittle,
-      text: resp[0].omessage,
+      title:resp[0].oboolean?'Se realizo correctamente':'ERROR',
+      text: resp[0].oboolean?message:resp[0].omessage,
       icon: resp[0].oboolean?'success':'error',
       confirmButtonText:'aceptar'
     }).then((result)=>{

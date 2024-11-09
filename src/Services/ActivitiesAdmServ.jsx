@@ -18,7 +18,12 @@ async function listarSubtemas(data){
 async function listarActividades(){
   const resp= (await (axios.get(url+"/listarActividades",{withCredentials:true}))).data;
   console.log(resp);
+  return resp;
   
 }
+async function crearActividad (data){
+  const resp = (await (axios.post(url+"/crearActividad",data,{withCredentials:true}))).data;
+  return resp;
+}
 
-export{listarTemas,listarSubtemas,listarActividades}
+export{listarTemas,listarSubtemas,listarActividades,crearActividad}

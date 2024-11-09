@@ -1,5 +1,5 @@
-import React from "react";
-import React, { useState, useEffect, createContext } from 'react';
+
+import { useState, useEffect, createContext } from 'react';
 import {
   Table,
   TableBody,
@@ -13,7 +13,9 @@ import {
 } from '@mui/material';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import InfoIcon from '@mui/icons-material/Info';
-import { SwitchComp } from './SwitcchComp';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 function ActivitiesTableComponent(props){
@@ -33,7 +35,7 @@ function ActivitiesTableComponent(props){
           </TableRow>
         </TableHead>
         <TableBody>
-          {actividadesData.map((row, index) => (
+          {actividadesData? actividadesData.map((row, index) => (
             <TableRow key={row.id}>
               <TableCell align="center">{index + 1}</TableCell>
               <TableCell align="center">{row.descripcion}</TableCell>
@@ -41,17 +43,21 @@ function ActivitiesTableComponent(props){
               <TableCell align="center">{row.tipo}</TableCell> {/* Ejemplo de acceso a rewards */}
               <TableCell align="center">{row.tema}</TableCell>
               <TableCell align="center">
-                <IconButton>
-                  <InfoIcon />
+                <IconButton title="Actualziar datos" onClick={()=>{props.openUpModal(row)}}>
+                  <EditIcon/>
                 </IconButton>
                 <IconButton title="Estadisticas general" onClick={()=>{ console.log(row.email);}}>
-                  <BarChartIcon />
+                  <DeleteIcon/>
                 </IconButton>
               </TableCell>
             </TableRow>
-          ))}
+          )):
+          <a>no hay datos..</a>
+          }
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+export {ActivitiesTableComponent}

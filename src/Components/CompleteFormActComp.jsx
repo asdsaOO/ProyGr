@@ -33,28 +33,32 @@ function CompleteFormActComponent(props) {
             text="Descripcion"
             placeholder="Ingrese el nombre de su actividad"
             name="inpDescripcion"
+            defaultValue={props.data.descripcion}
           />
         </div>
         <div className="col-4">
           <InputComp
             text="Palabra clave"
             placeholder="Ingrese la palabra clave"
+            defaultValue={props.data?props.data.respuesta:''}
             onChange={manejarPalabraClave}
             name="inpRespuesta"
+            
           />
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-5">
+        <div className="col-6">
           <SelectFormComp
             text="Seleccionar Titulo:"
             name="inpTema"
+            defaultData={props.data?{value:props.data.idtema,text:props.data.tema}:undefined}
             options={props.titulos}
               onchange={(e)=>recargarSubtemas(e.target.value)
             }
           />
         </div>
-        <div className="col-5">
+        <div className="col-6">
           {
             !cargandoSubtemas ?
               <SelectFormComp
@@ -68,21 +72,23 @@ function CompleteFormActComponent(props) {
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-10">
+        <div className="col-10 offset-1">
           <TextAreaForm
             text="Frase"
             placeholder="Ingrese la frase que de la actividad, recuerda poner _ donde deseas la palabra clave"
+            defaultValue = {props.data?props.data.enunciado:''}
             onChange={manejarFrase}
             name="inpEnunciado"
           />
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-10">
+        <div className="col-10 offset-1">
           <TextAreaForm
             text="Frase generada"
             disabled={true}
             value={textoGenerado.trim()}
+            defaultValue={props.data?props.data.enunciado.replace(/_/g,props.data.respuesta):''}
           />
         </div>
       </div>

@@ -17,7 +17,7 @@ function TopicsAdmPag() {
   const [cargaPagina, dataPag] = useFuture(controller.datosPagina);
   const [carga, temas_datos] = useFuture(controller.listarTemas);
   const [tipoTema, setTipoTema] = useState("tema");
-  const [dataUpModal,statusUpModal  ,activeUpModal0,closeUpModal]=useModalCaller(false);
+  const [dataUpModal,statusUpModal,activeUpModal0,closeUpModal]=useModalCaller(false);
   ///////////////////////////////////////////////////////////////////////
   const eliminarTema= async (id,tipo)=>{
     const response = await controller.eliminarTema(id,tipo)

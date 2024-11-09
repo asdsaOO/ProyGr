@@ -8,7 +8,7 @@ import { HangManInputsComp } from "./HangManInputsComp";
 
 function HangManFormActComponent(props) {
   const [cargandoSubtemas, subtemas, recargarSubtemas] = useFutureReloadable(control.listarSubtema);
-  const [palagraClave,setPalabraClave]=useState('');
+  const [palagraClave,setPalabraClave]=useState(props.data?props.data.respuesta:'');
 
   return (
 
@@ -19,11 +19,12 @@ function HangManFormActComponent(props) {
             text="Descripcion"
             placeholder="Ingrese el nombre de su actividad"
             name="inpDescripcion"
+            defaultValue={props.data?props.data.descripcion:''}
           />
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-5">
+        <div className="col-6">
           <SelectFormComp
             text="Seleccionar Titulo:"
             name="inpTema"
@@ -32,7 +33,7 @@ function HangManFormActComponent(props) {
             }
           />
         </div>
-        <div className="col-5">
+        <div className="col-6">
           {
             !cargandoSubtemas ?
               <SelectFormComp
@@ -46,17 +47,19 @@ function HangManFormActComponent(props) {
         </div>
       </div>
       <div className="row mb-4">
-        <div className="col-5">
+        <div className="col-6">
           <InputComp
             text="Pista"
             placeholder="Ingrese la pista"
             name="inpEnunciado"
+            defaultValue={props.data.enunciado}
           />
         </div>
-        <div className="col-5">
+        <div className="col-6">
           <InputComp
             text="Palabra clave"
             name="inpRespuesta"
+            defaultValue={props.data.respuesta}
             placeholder="ingresa la palabra clave"
             onChange={(e)=>setPalabraClave(e.target.value
             )}

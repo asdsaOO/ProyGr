@@ -5,7 +5,7 @@ function SelectFormComp(props) {
     <div hidden={props.hide}>
       <label htmlFor={props.id} className="form-label">{props.text}</label>
       <select  className="form-select" aria-label="Default select example" id={props.id} name={props.name} onChange={props.onchange}>
-        <option value={0} hidden>Selecciona {props.text}</option>
+        <option value={props.defaultData?props.defaultData.value:0} hidden>{props.defaultData?props.defaultData.text:props.text}</option>
         {
           props.options?(
           props.options.map((option, index) => (

@@ -10,26 +10,31 @@ import * as control from "../Controllers/ActivitiesAdmControl"
 import { ButtonFormComp } from "../Components/ButtonFormComp";
 import { useFutureReloadable } from "../Components/Hooks/useFutureReloadable";
 import { HangManFormActComponent } from "../Components/HangManFormActComponent";
+import { ActivitiesTableComponent } from "../Components/tables/ActivitiesTableComponent";
+import { UpdateActivitiesModal } from "../Components/modales/UpdateActivitiesModal";
+import { useModalCaller } from "../Components/Hooks/useModalCaller";
 
 function ActivitiesAdmPag() {
   const [itemscheck, activarcheck] = useExclusiveToggle();
   const [cargaPagina, datosPagina, recargarDatosPagina] = useFutureReloadable(control.datosPagina);
-
+  const [dataUpModal,statusUpModal,activeUpModal0,closeUpModal]=useModalCaller(false);
   return (
+   
     <div className="mb-4 col-12">
-      <form onSubmit={
-        itemscheck[0] ? control.crearEleccionMultiple :
-        itemscheck[1] ? control.crearCompletarFrase :
-        itemscheck[2] ? control.crearHangManAct :
-        null
-      }>
-        <div className="row mb-4 mt-4">
+      <form onSubmit={(e)=>{
+        control.crearActividad(e).then(()=>{
+          recargarDatosPagina();
+
+        });
+        
+      }}>
+        <div className="row mb-4 mt-4  offset-1">
           <div className="col-3">
             <CheckformComp
               checked={itemscheck[0]}
               active={activarcheck}
               index={0}
-              name="tipo"
+              name="inpTipo"
               value={1}
               text="Eleccion-multiple"
             />
@@ -39,7 +44,7 @@ function ActivitiesAdmPag() {
               checked={itemscheck[1]}
               active={activarcheck}
               index={1}
-              name="tipo"
+              name="inpTipo"
               value={2}
               text="Completar Frase"
             />
@@ -49,7 +54,7 @@ function ActivitiesAdmPag() {
               checked={itemscheck[2]}
               active={activarcheck}
               index={2}
-              name="tipo"
+              name="inpTipo"
               value={3}
               text="El ahorcado"
             />
@@ -58,8 +63,9 @@ function ActivitiesAdmPag() {
         </div>
         {cargaPagina ?
           <a>Cargando...</a>
-          : <div>
-            <div className="row mb-4">
+          : <div className="row border shadow rounded">
+            <div className="row mb-3 mt-4 d-flex flex-column justify-content-center align-items-center">
+              
               {
                 itemscheck[0] ?<ChooseFormActComponent
                                 titulos={datosPagina.titulosSelect}
@@ -73,7 +79,7 @@ function ActivitiesAdmPag() {
                 null
               }
             </div>
-            <div className="row mb-4">
+            <div className="row mb-4 offset-1">
               <div className="col-auto">
                 <ButtonFormComp
                   texto="Crear Actividad"
@@ -85,7 +91,24 @@ function ActivitiesAdmPag() {
         }
 
       </form>
+      <div className="mt-4">
+      <div className="row border rounded">
+        <div className="col-12">
+        <ActivitiesTableComponent
+          data={datosPagina.actividades}
+          openUpModal={activeUpModal0}
+        />
+        </div>
 
+      </div>
+      </div>
+      {
+        statusUpModal?<UpdateActivitiesModal
+                       closeModal={closeUpModal}
+                       data={dataUpModal}
+                       titulos={datosPagina.titulosSelect}
+                      />:null
+      }
     </div>
   )
 }

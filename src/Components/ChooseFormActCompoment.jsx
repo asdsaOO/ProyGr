@@ -11,33 +11,36 @@ import { useFutureReloadable } from "./Hooks/useFutureReloadable";
 import * as control from "../Controllers/ActivitiesAdmControl";
 function ChooseFormActComponent(props) {
   const [items, changeItems] = useExclusiveToggle();
-  const [itemsValues, changeValues] = useMultipleOptions([``, ``, ``]);
+  const [itemsValues, changeValues] = useMultipleOptions(props.data?props.data.opciones:[``, ``, ``]);
   const [cargandoSubtemas,subtemas,recargarSubtemas]=useFutureReloadable(control.listarSubtema);
+  
   return (
-    <div className="row mb-4">
-        <div className="row mb-4">
+    <div className="row mb-4 ">
+        <div className="row mb-4 ">
 
-          <div className="col-5">
+          <div className="col-6">
             <InputComp
               text="Descripcion"
               placeholder="Ingresa descripcion"
-              name="inpDescrpcion"
+              name="inpDescripcion"
+              defaultValue={props.data?props.data.descripcion:''}
             />
           </div>
 
         </div>
         <div className="row mb-4">
-          <div className="col-5">
+          <div className="col-6">
             <SelectFormComp
               text="Titulo:"
               name="inpTema"
+              defaultData={props.data?{value:props.data.idtema,text:props.data.tema}:undefined}
               options={props.titulos}
               onchange={(e)=>recargarSubtemas(e.target.value)
               }
               
             />
           </div>
-          <div className="col-5">
+          <div className="col-6">
             {
               !cargandoSubtemas?
               <SelectFormComp
@@ -52,11 +55,12 @@ function ChooseFormActComponent(props) {
           </div>
         </div>
         <div className="row mb-4">
-          <div className="col-5">
+          <div className="col-6">
             <InputComp
               text="Pregunta"
               placeholder="Ingresa la pregunta"
               name="inpEnunciado"
+              defaultValue={props.data?props.data.enunciado:''}
             />
           </div>
         </div>
@@ -74,6 +78,7 @@ function ChooseFormActComponent(props) {
             <div className="col-auto ">
               <InputComp
                 placeholder="Ingresa opcion 1"
+                defaultValue ={props.data?itemsValues[0]:''}
                 onChange={(e) => {
                   const value = e.target.value;
                   changeValues(0, value)
@@ -95,6 +100,7 @@ function ChooseFormActComponent(props) {
             <div className="col-auto">
               <InputComp
                 placeholder="Ingresa opcion 1"
+                defaultValue ={props.data?itemsValues[1]:''}
                 onChange={(e) => {
                   const value = e.target.value;
                   changeValues(1, value)
@@ -116,6 +122,7 @@ function ChooseFormActComponent(props) {
             <div className="col-auto">
               <InputComp
                 placeholder="Ingresa opcion 1"
+                defaultValue ={props.data?itemsValues[2]:''}
                 onChange={(e) => {
                   const value = e.target.value;
                   changeValues(2, value)
