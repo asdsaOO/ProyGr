@@ -18,6 +18,7 @@ function ActivitiesAdmPag() {
   const [itemscheck, activarcheck] = useExclusiveToggle();
   const [cargaPagina, datosPagina, recargarDatosPagina] = useFutureReloadable(control.datosPagina);
   const [dataUpModal,statusUpModal,activeUpModal0,closeUpModal]=useModalCaller(false);
+  
   return (
    
     <div className="mb-4 col-12">
@@ -97,6 +98,11 @@ function ActivitiesAdmPag() {
         <ActivitiesTableComponent
           data={datosPagina.actividades}
           openUpModal={activeUpModal0}
+          deleteItem={async(num)=>{
+            await control.eliminarActividad(num);
+            recargarDatosPagina();
+
+          }}
         />
         </div>
 
@@ -107,6 +113,11 @@ function ActivitiesAdmPag() {
                        closeModal={closeUpModal}
                        data={dataUpModal}
                        titulos={datosPagina.titulosSelect}
+                       onSubmit={async(e)=>{
+                         await control.actualizarActividad(e);
+                         await recargarDatosPagina();
+
+                       }}
                       />:null
       }
     </div>

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '../Style/SideNav.css';
+import '../../Style/SideNav.css';
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function HomePag() {
+function StudentHome() {
   const [isSidebarVisible, setSidebarVisible] = useState(true);
   const navigate = useNavigate();
 
@@ -43,27 +43,21 @@ function HomePag() {
           <div className='bg-dark col-md-3 col-lg-2 col-4 d-flex flex-column min-vh-100 sticky-sidebar'>
             <ul className='nav nav-pills flex-column mt-4'>
               <li className="nav-item my-1">
-                <Link to={'Students'} className="nav-link text-white fs-5">
+                <Link to={'Lessons'}  className="nav-link text-white fs-5">
                   <i className='bi bi-speedometer'></i>
-                  <span className="ms-2">Estudiantes</span>
+                  <span className="ms-2">Lecciones</span>
                 </Link>
               </li>
               <li className="nav-item my-1">
-                <Link to={'Activities'} className="nav-link text-white fs-5">
+                <Link to={'Progress'}  className="nav-link text-white fs-5">
                   <i className='bi bi-house'></i>
-                  <span className="ms-2">Actividades</span>
+                  <span className="ms-2">Rank</span>
                 </Link>
               </li>
               <li className="nav-item my-1">
-                <Link to={'Topics'} className="nav-link text-white fs-5">
+                <Link to={'Rank'} className="nav-link text-white fs-5">
                   <i className='bi bi-table'></i>
                   <span className="ms-2">Temas</span>
-                </Link>
-              </li>
-              <li className="nav-item my-1">
-                <Link to={'Progress'} className="nav-link text-white fs-5">
-                  <i className='bi bi-graph-up'></i>
-                  <span className="ms-2">Progresos</span>
                 </Link>
               </li>
             </ul>
@@ -81,4 +75,4 @@ function HomePag() {
   );
 }
 
-export { HomePag };
+export { StudentHome };

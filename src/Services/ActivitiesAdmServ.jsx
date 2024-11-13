@@ -9,10 +9,7 @@ async function listarTemas (){
 }
 
 async function listarSubtemas(data){
-  console.log(data);
-  
   const response =(await axios.put(url2+"/listarSubtemas",data,{withCredentials:true})).data;
-  console.log(response);
   return response;
 }
 async function listarActividades(){
@@ -26,4 +23,14 @@ async function crearActividad (data){
   return resp;
 }
 
-export{listarTemas,listarSubtemas,listarActividades,crearActividad}
+async function actualizarActividades(data){
+  const resp = (await (axios.post(url+"/actualizarActividades",data,{withCredentials:true}))).data;
+  return resp;
+}
+async function eliminarActividad (data){
+  const resp= (await (axios.post(url+"/eliminarActividad",data,{withCredentials:true}))).data;
+  return resp;
+
+}
+
+export{listarTemas,listarSubtemas,listarActividades,crearActividad,actualizarActividades,eliminarActividad}

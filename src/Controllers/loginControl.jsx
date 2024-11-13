@@ -58,6 +58,22 @@ function obtenerCookie (name){
   if (parts.length === 2) return parts.pop().split(';').shift();
   return null;
 }
+function obtenerId() {
+  
+  const token = obtenerCookie('Nkauth'); 
+  if (token) {
+    try {
+      const decoded = jwtDecode(token); 
+      
+      return decoded.idUsuario; 
+    } catch (error) {
+      console.error('Error al decodificar el token:', error);
+    }
+  } else {
+    console.log('Token no encontrado en la cookie.');
+    return null;
+  }
+}
 
 
 
@@ -67,5 +83,5 @@ function verificarCorreo(correo) {
 
 }
 
-export { datosPagina,autenticarUsuario,getUserRoleFromCookie }
+export { datosPagina,autenticarUsuario,getUserRoleFromCookie,obtenerId }
 

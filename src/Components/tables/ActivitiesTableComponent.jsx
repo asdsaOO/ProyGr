@@ -31,6 +31,7 @@ function ActivitiesTableComponent(props){
             <TableCell align="center">Fecha</TableCell>
             <TableCell align="center">Tipo</TableCell>
             <TableCell align="center">Tema</TableCell>
+            <TableCell align="center">Subtema</TableCell>
             <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
@@ -42,11 +43,12 @@ function ActivitiesTableComponent(props){
               <TableCell align="center">{row.fecha}</TableCell>
               <TableCell align="center">{row.tipo}</TableCell> {/* Ejemplo de acceso a rewards */}
               <TableCell align="center">{row.tema}</TableCell>
+              <TableCell align="center">{row.subtema}</TableCell>
               <TableCell align="center">
                 <IconButton title="Actualziar datos" onClick={()=>{props.openUpModal(row)}}>
                   <EditIcon/>
                 </IconButton>
-                <IconButton title="Estadisticas general" onClick={()=>{ console.log(row.email);}}>
+                <IconButton title="Eliminar actividad" onClick={()=>{props.deleteItem(row.id)}}>
                   <DeleteIcon/>
                 </IconButton>
               </TableCell>

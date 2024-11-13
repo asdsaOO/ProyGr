@@ -8,8 +8,11 @@ import { TopicsAdmPag } from "../TopicsAdmPag";
 import {SignIn} from "../LoginPag";
 import {SignUp} from "../SignUpPag"
 import { HomePag } from "../HomePag";
-import { StudentHome } from "../StudentHome";
-
+import { StudentHome } from "../StudentPages/StudentHome";
+import { LessonsPage } from "../StudentPages/LessonsPAge";
+import { ProgressPage } from "../StudentPages/ProgresoPAge";
+import { RankPage } from "../StudentPages/RankPage";
+import { GamePage } from "../StudentPages/GAmePage";
 function routerApp (){
   return createBrowserRouter([
     {
@@ -50,7 +53,26 @@ function routerApp (){
     },
     {
       path:"/studentHome",
-      element:<StudentHome/>
+      element:<StudentHome/>,
+      children:[
+        {
+          path: "Lessons",
+          element: <LessonsPage/>
+
+        },
+        {
+          path:"Progress",
+          element: <ProgressPage/>
+        },
+        {
+          path:"Rank",
+          element: <RankPage/>
+        },
+        {
+          path:"GameLesson",
+          element:<GamePage/>
+        }
+      ]
     }
   ])
 }

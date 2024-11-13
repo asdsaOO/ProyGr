@@ -33,7 +33,7 @@ function CompleteFormActComponent(props) {
             text="Descripcion"
             placeholder="Ingrese el nombre de su actividad"
             name="inpDescripcion"
-            defaultValue={props.data.descripcion}
+            defaultValue={props.data?props.data.descripcion:''}
           />
         </div>
         <div className="col-4">
@@ -87,8 +87,8 @@ function CompleteFormActComponent(props) {
           <TextAreaForm
             text="Frase generada"
             disabled={true}
-            value={textoGenerado.trim()}
-            defaultValue={props.data?props.data.enunciado.replace(/_/g,props.data.respuesta):''}
+            value={props.data?props.data.enunciado.replace(/_/g,props.data.respuesta):textoGenerado.trim()}
+            
           />
         </div>
       </div>

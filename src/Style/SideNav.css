@@ -1,6 +1,34 @@
 .text-red {
   color: brown;
 }
-.nav-pills li a:hover{
+
+.nav-pills li a:hover {
   background-color: brown;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 56px; /* Altura de la barra de navegación */
+  height: calc(100vh - 56px); /* Ajuste de altura para ocupar el resto de la ventana */
+  overflow-y: auto; /* Permite el scroll dentro del sidebar si es necesario */
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 767px) {
+  .sticky-sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    height: calc(100vh - 56px);
+    width: 250px; /* Sidebar más pequeño */
+    z-index: 1050;
+  }
+
+  .container-fluid {
+    padding-left: 0; /* Evitar desplazamiento por el lado izquierdo cuando el sidebar está visible */
+  }
+
+  .col {
+    margin-left: 0; /* Asegurar que el contenido ocupe toda la pantalla cuando el sidebar esté oculto */
+  }
 }

@@ -52,14 +52,14 @@ function HangManFormActComponent(props) {
             text="Pista"
             placeholder="Ingrese la pista"
             name="inpEnunciado"
-            defaultValue={props.data.enunciado}
+            defaultValue={props.data?props.data.enunciado:''}
           />
         </div>
         <div className="col-6">
           <InputComp
             text="Palabra clave"
             name="inpRespuesta"
-            defaultValue={props.data.respuesta}
+            defaultValue={props.data?props.data.respuesta:''}
             placeholder="ingresa la palabra clave"
             onChange={(e)=>setPalabraClave(e.target.value
             )}

@@ -81,8 +81,35 @@ async function crearActividad (e){
   const resp = await (services.crearActividad(dataSend));
 
   throwSwal.callSwal(resp,()=>{},'Se Creo la actividad correctamente');
-
   //const resp = services.crearActividad(data);
+}
+
+
+async function actualizarActividad (e){
+  e.preventDefault();
+  const formData = new FormData (e.target);
+  const data = Object.fromEntries(formData);
+  const dataSend ={
+    idActividad:data.inpIdActividad,
+    idTipo:data.inpTipo,
+    idTema:data.inpTema,
+    idSubtema:data.inpSubtema,
+    enunciado:data.inpEnunciado,
+    descripcion:data.inpDescripcion,
+    respuesta:data.inpRespuesta,
+    opciones:data.inpOpcion1?[data.inpOpcion1,data.inpOpcion2,data.inpOpcion3]:null
+  }
+  console.log(dataSend);
+  const resp = await (services.actualizarActividades(dataSend));
+
+  throwSwal.callSwal(resp,()=>{},'Se actualizo la actividad correctamente');
+  //const resp = services.crearActividad(data);*/
+}
+async function eliminarActividad(id){
+  const dataSend ={idActividad:id}
+  const resp = await (services.eliminarActividad(dataSend));
+  throwSwal.callSwal(resp,()=>{},'Se elimino la actividad correctamente');
+
 
 }
 
@@ -100,6 +127,7 @@ export{crearEleccionMultiple,
        listarSubtema,
        crearCompletarFrase,
        crearHangManAct,
-       crearActividad
-       
+       crearActividad,
+       actualizarActividad,
+       eliminarActividad
       }
