@@ -7,10 +7,15 @@ import { MultipleOptionsGame } from "../../Components/games/MultipleIptionsGame"
 import { useState } from "react";
 import { ResultModal } from "../../Components/modales/ResultModal";
 import { useModalCaller } from "../../Components/Hooks/useModalCaller";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import { Navigate } from "react-router-dom";
+import CronometroComp from "../../Components/CronometroComp";
+
 
 function GamePage() {
+  const cronometroRef = useRef(null);
+
+
   const navigation= useNavigate();
   const location = useLocation();
   const dataGame = location.state;
@@ -18,12 +23,19 @@ function GamePage() {
   const [actividad, setActividad] = useState({ ...dataGame.actividades[numActividad] });
   const [puntuacion, setPuntuacion] = useState(0);
   const [data, estadoResultadoModal, activarModalResultado, cerrarResultadoModal] = useModalCaller('');
+
   const manejarResultado =(resultado)=>{
     if(resultado){
       setPuntuacion(prev=>prev+20);
-      
+      dataGame.actividades[numActividad].resultado=true;
+      dataGame.actividades[numActividad].tiempo=cronometroRef.current.obtenerTiempoEnSegundos();
+    }else{
+      dataGame.actividades[numActividad].resultado=false;
+      dataGame.actividades[numActividad].tiempo=cronometroRef.current.obtenerTiempoEnSegundos();
+
     }
-    dataGame.actividades[numActividad].resultado=puntuacion;
+    cronometroRef.current.parar();
+    
   }
 
   const siguienteActividad = () => {
@@ -32,10 +44,15 @@ function GamePage() {
       const newNum = prevNum + 1;
       
       if (newNum >= dataGame.actividades.length) {
+        console.log(dataGame);
+        
         activarModalResultado(); 
       }
       return newNum; 
     });
+    console.log(dataGame.actividades);
+    cronometroRef.current.reiniciar();
+    
   };
 
   useEffect(() => {
@@ -46,6 +63,11 @@ function GamePage() {
 
   return (
     <div>
+      <div>
+      <CronometroComp
+        ref={cronometroRef}
+      />
+      </div>
       <div>
         <label>{'Puntuación: ' + puntuacion}</label>
       </div>
