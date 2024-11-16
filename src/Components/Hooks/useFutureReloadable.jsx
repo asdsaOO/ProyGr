@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 
-function useFutureReloadable(action){
+function useFutureReloadable(action,input){
  const [cargando,setcarga] = useState(true);
  const [data, setdata]=useState([]);
  const handleData = (variable)=>{
@@ -12,7 +12,7 @@ function useFutureReloadable(action){
 });
 }
  useEffect(()=>{
-  handleData();
+  handleData(input);
  },[])
 
  return [cargando,data,handleData]

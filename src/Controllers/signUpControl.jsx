@@ -34,7 +34,8 @@ async function registrarUsuario (e){
       nombre:dataObj.inpNombre.trim(),
       apellido:dataObj.inpApellido.trim(),
       idRol:dataObj.idRol,
-      password:dataObj.inpPassword.trim()
+      password:dataObj.inpPassword.trim(),
+      celular:dataObj.inpCelular
     }
     console.log('datos a enviar');
     console.log(dataSend);

@@ -109,6 +109,17 @@ export default function SignUp() {
                 autoComplete="family-name"
               />
             </Grid>
+            <Grid item xs={12} >
+              <TextField
+                required
+                fullWidth
+                id="inpCelular"
+                label="Celular"
+                name="inpCelular"
+                autoComplete="celular"
+                type='number'
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 required
