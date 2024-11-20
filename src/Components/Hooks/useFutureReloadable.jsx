@@ -5,6 +5,8 @@ function useFutureReloadable(action,input){
  const [cargando,setcarga] = useState(true);
  const [data, setdata]=useState([]);
  const handleData = (variable)=>{
+  
+  
   setcarga(true);
   action(variable?variable:null).then((resp)=>{
   setdata(resp);
@@ -12,6 +14,8 @@ function useFutureReloadable(action,input){
 });
 }
  useEffect(()=>{
+  
+  
   handleData(input);
  },[])
 

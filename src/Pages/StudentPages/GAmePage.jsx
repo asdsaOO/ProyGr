@@ -23,7 +23,11 @@ function GamePage() {
 
   const manejarResultado = (resultado) => {
     if (resultado) {
-      setPuntuacion(prev => prev + 10);
+      setPuntuacion((prev) => {
+        const nuevaPuntuacion = prev + 10;
+        dataGame.puntaje = nuevaPuntuacion;  // Asegurándote de actualizar correctamente el puntaje
+        return nuevaPuntuacion;
+      });
       dataGame.actividades[numActividad].resultado = true;
       dataGame.actividades[numActividad].tiempo = cronometroRef.current.obtenerTiempoEnSegundos();
     } else {
@@ -32,7 +36,7 @@ function GamePage() {
     }
     cronometroRef.current.parar();
     setSiguienteButtonStatus(true);
-    dataGame.puntaje=puntuacion;
+    //dataGame.puntaje=puntuacion;
   };
 
   const siguienteActividad = () => {

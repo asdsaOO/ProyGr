@@ -16,19 +16,35 @@
 /* Ajustes para dispositivos móviles */
 @media (max-width: 767px) {
   .sticky-sidebar {
-    position: fixed;
+    position: fixed; /* Asegura que no empuje contenido hacia abajo */
     top: 56px;
     left: 0;
+    width: 250px; /* Ajusta el ancho para pantallas pequeñas */
     height: calc(100vh - 56px);
-    width: 250px; /* Sidebar más pequeño */
+    overflow-y: auto;
     z-index: 1050;
   }
 
   .container-fluid {
-    padding-left: 0; /* Evitar desplazamiento por el lado izquierdo cuando el sidebar está visible */
+    padding-left: 0; /* Asegura que no haya espacio lateral adicional */
+  }
+
+  .row {
+    margin-top: 56px; /* Asegura espacio suficiente debajo de la barra de navegación */
   }
 
   .col {
-    margin-left: 0; /* Asegurar que el contenido ocupe toda la pantalla cuando el sidebar esté oculto */
+    margin-left: 0; /* Asegura que el contenido principal ocupe todo el ancho */
+  }
+
+  table {
+    width: 100%;
+    display: block; /* Fuerza comportamiento responsivo */
+    overflow-x: auto; /* Habilita scroll horizontal */
+  }
+
+  table thead, table tbody, table tfoot {
+    display: table;
+    width: 100%;
   }
 }

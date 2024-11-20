@@ -71,7 +71,7 @@ function HomePag() {
         )}
 
         {/* Contenido principal */}
-        <div className={isSidebarVisible ? 'col' : 'col-12'}>
+        <div className={isSidebarVisible ? 'col' : 'col-12'} style={{ overflowX: 'auto' }}>
           <div className='container d-flex flex-column justify-content-center align-items-center'>
             <Outlet />
           </div>

@@ -1,0 +1,9 @@
+/* Personaliza el color de los indicadores */
+.carousel-indicators li {
+  background-color: black; /* Cambia el color de los círculos a negro */
+}
+.carousel-indicators .active {
+  background-color: gray; /* Cambia el color del indicador activo */
+}
+
+
