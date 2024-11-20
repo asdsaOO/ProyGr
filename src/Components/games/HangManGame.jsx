@@ -3,11 +3,20 @@ import { Alert } from 'react-bootstrap'; // Usamos Alert para mostrar mensajes
 import styles from '../../Style/HangManInputs.module.css';
 
 function HangManGame(props) {
+  // Estados iniciales
   const [guesses, setGuesses] = useState(Array(props.word.length).fill(''));
   const [remainingAttempts, setRemainingAttempts] = useState(8);
   const [mensaje, setMensaje] = useState('');
   const [showHint, setShowHint] = useState(true); // Estado para siempre mostrar la pista
   const vertorWord = props.word.split('');
+
+  // Resetear el estado cuando el componente se monte
+  useEffect(() => {
+    setGuesses(Array(props.word.length).fill(''));
+    setRemainingAttempts(8);
+    setMensaje('');
+    setShowHint(true); // Puedes modificar este estado si lo necesitas
+  }, [props.word]); // Se ejecuta cada vez que cambia la palabra
 
   const handleInputChange = (e, index) => {
     const newGuesses = [...guesses];
@@ -37,6 +46,7 @@ function HangManGame(props) {
       setMensaje('');
     }
   }, [guesses, remainingAttempts, props.word]);
+
   const stylesContainer = {
     padding: '20px',
     fontFamily: 'Arial, sans-serif',

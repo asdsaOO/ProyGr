@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Alert } from 'react-bootstrap'; // Usamos Alert para mostrar mensajes
 
 function MultipleOptionsGame({ question, options, answer,handleResult }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [feedback, setFeedback] = useState('');
   const [alertVariant, setAlertVariant] = useState(''); // Para cambiar el color del alert
+  useEffect(() => {
+    // Reiniciar el estado cada vez que el componente se monta (nueva actividad)
+    setSelectedOption(null);
+    setFeedback('');
+    setAlertVariant('');
+  }, [question]);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);

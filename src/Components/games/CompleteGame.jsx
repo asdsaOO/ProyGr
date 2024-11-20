@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
 
-const CompletarFrase = ({ enunciado, palabraClave,handleResult }) => {
+const CompletarFrase = ({ enunciado, palabraClave, handleResult }) => {
   const [respuesta, setRespuesta] = useState("");
   const [esCorrecto, setEsCorrecto] = useState(null);
   const [mensaje, setMensaje] = useState("");
+
+  // Resetear estado cuando cambie el enunciado o palabraClave
+  useEffect(() => {
+    setRespuesta(""); // Reiniciar la respuesta
+    setEsCorrecto(null); // Resetear estado de corrección
+    setMensaje(""); // Limpiar mensaje
+  }, [enunciado, palabraClave]); // Dependencias de useEffect: enunciado y palabraClave
 
   const handleInputChange = (e) => {
     setRespuesta(e.target.value);
