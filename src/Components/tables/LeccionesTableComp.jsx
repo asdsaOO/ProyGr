@@ -14,7 +14,7 @@ import {
 import { Preview } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 
-function LeccionesTableComp({ data }) {
+function LeccionesTableComp({ data,activarModal}) {
   const leccionesData = data;
 
   return (
@@ -46,7 +46,7 @@ function LeccionesTableComp({ data }) {
               </TableCell>
               <TableCell align="center">
                 <Tooltip title="ver leccion" arrow>
-                  <IconButton onClick={() => { }}>
+                  <IconButton onClick={() => {activarModal(row.id_leccion) }}>
                     <Preview />
                   </IconButton>
                 </Tooltip>

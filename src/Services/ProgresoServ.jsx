@@ -18,5 +18,21 @@ async function obtenerActividad (data){
   return resp;
 
 }
+async function listarDatosLeccion(data){
+  const resp = (await axios.get (url+'/listarDatosLeccion',{withCredentials:true,params:data})).data;
+  //console.log(resp);
+  
+  return resp;
+}
+async function obtenerDatosRendimiento(data){
+  const resp = await axios.get(url+'/obtenerDatosRendimiento',{withCredentials:true,params:data});
+  return resp.data;
 
-export{listarRank, cerrarAbrirTemporada,obtenerActividad}
+}
+async function obtenerClasificacionPersonal(data){
+  const resp = await axios.get (url+'/obtenerClasificacionPersonal',{withCredentials:true,params:data});
+  return resp.data
+
+}
+
+export{listarRank, cerrarAbrirTemporada,obtenerActividad,listarDatosLeccion,obtenerDatosRendimiento,obtenerClasificacionPersonal}

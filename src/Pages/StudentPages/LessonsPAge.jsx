@@ -4,41 +4,50 @@ import { HangManGame } from '../../Components/games/HangManGame';
 import { MultipleOptionsGame } from '../../Components/games/MultipleIptionsGame';
 import { ButtonFormComp } from '../../Components/ButtonFormComp';
 import { useNavigate } from 'react-router-dom';
-import {useFutureReloadable} from '../../Components/Hooks/useFutureReloadable'
+import { useFutureReloadable } from '../../Components/Hooks/useFutureReloadable'
 import * as control from '../../Controllers/LessonsControl'
 import { LeccionesTableComp } from '../../Components/tables/LeccionesTableComp';
+import { LessonsHistorialModal } from '../../Components/modales/LessonsHistorialModal';
+import * as resultServ from '../../Services/ProgresoServ';
+import { useModalCaller } from '../../Components/Hooks/useModalCaller';
 
-function LessonsPage (){
-  const [cargandoLecciones,leccionesData,recargarLecciones]=useFutureReloadable(control.listarLeccionesRealizadas);
+function LessonsPage() {
+  const [cargandoLecciones, leccionesData, recargarLecciones] = useFutureReloadable(control.listarLeccionesRealizadas);
+  const [dataDetalle,activoDetalleLeccionModal,activarDetalleLeccionModal,desactivarDetalleLeccionModal]= useModalCaller();
 
   const navigate = useNavigate();
-  const generarLeccion = async()=>{
+  const generarLeccion = async () => {
     const leccionv = await control.obtenerLeccion();
     console.log(leccionv);
-    
-    navigate('/studentHome/GameLesson',{state:leccionv})
+
+    navigate('/studentHome/GameLesson', { state: leccionv })
   }
-  return(
+  return (
     <>
-    <div className='row mb-4 mt-4'>
-      <ButtonFormComp
-        texto="iniciar leccion rapida"
-        onClick={generarLeccion}
-      />
-    </div>
-    <div className='row mb-4 mt-4'>
+      <div className='row mb-4 mt-4'>
+        <ButtonFormComp
+          texto="iniciar leccion rapida"
+          onClick={generarLeccion}
+        />
+      </div>
+      <div className='row mb-4 mt-4'>
+        {
+          !cargandoLecciones ? <LeccionesTableComp
+            data={leccionesData}
+            activarModal={activarDetalleLeccionModal}
+          /> :
+            <a>cargando...</a>
+        }
+      </div>
       {
-        !cargandoLecciones?<LeccionesTableComp
-                            data={leccionesData}
-                          />:
-        <a>cargando...</a>
-
+        activoDetalleLeccionModal?<LessonsHistorialModal
+                                    cerrarModal={desactivarDetalleLeccionModal}
+                                    idLeccion={dataDetalle}
+                                  />:null
       }
-
-
-    </div>
+      
     </>
   )
 }
 
-export{LessonsPage}
+export { LessonsPage }

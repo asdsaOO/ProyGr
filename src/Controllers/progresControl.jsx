@@ -1,5 +1,6 @@
 import * as service from '../Services/ProgresoServ';
 import * as throwSwal from "../helpers/throwSwalA"
+import * as loginControll from "../Controllers/loginControl";
 async function listarRank(idRango){
   try{
     const dataSend= {
@@ -22,8 +23,6 @@ async function cerrarAbrirTemporada(){
   try{
     const resp = await service.cerrarAbrirTemporada();
     throwSwal.callSwal(resp,()=>{},'Se cerro la temporada y se actualizaron los rangos exitosamente');
-
-
   }catch(e){
     console.log(e);
     
@@ -40,4 +39,31 @@ async function obtenerActividad (vidUsuario){
   return resp;
 
 }
-export{listarRank, cerrarAbrirTemporada,obtenerActividad}
+
+async function obtenerDatosRendimiento (){
+  const idUsuario = loginControll.obtenerId();
+  const dataSend = {
+    id_usuario:idUsuario
+  }
+  const resp = await service.obtenerDatosRendimiento(dataSend);
+  console.log(resp);
+  
+  return resp;
+
+
+}
+
+async function obtenerClasificacionPersonal(){
+  const idUsuario = loginControll.obtenerId();
+  const dataSend = {
+    idUsuario:idUsuario
+  }
+  const resp= await service.obtenerClasificacionPersonal(dataSend);
+  return resp;
+}
+export{listarRank, 
+       cerrarAbrirTemporada,
+       obtenerActividad,
+       obtenerDatosRendimiento,
+       obtenerClasificacionPersonal
+      }
