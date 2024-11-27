@@ -92,10 +92,12 @@ function StudentsAdmPag(){
         </div>
       </div>
       <div className="row mb-4">
+        <div className="col-auto">
         <ButtonFormComp
           texto="Registrar Estudiante"
           type="submit"
         />
+        </div>
       </div>
       </form>
       <div className="row border" style={{ overflowX: 'auto' }}>

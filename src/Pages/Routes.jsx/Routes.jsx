@@ -71,6 +71,10 @@ function routerApp (){
         {
           path:"GameLesson",
           element:<GamePage/>
+        },
+        {
+          path: "",
+          element: <Navigate to="Lessons" replace />,
         }
       ]
     }

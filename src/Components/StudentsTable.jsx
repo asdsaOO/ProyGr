@@ -13,6 +13,7 @@ import {
 import BarChartIcon from '@mui/icons-material/BarChart';
 import InfoIcon from '@mui/icons-material/Info';
 import { SwitchComp } from './SwitcchComp';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -43,10 +44,7 @@ const StudentsTable = (props) => {
               <TableCell align="center"><SwitchComp data={{id:row.id,habilitado:row.habilitado}}check={row.habilitado} onChange={props.modificarEstado}/></TableCell>
               <TableCell align="center">
                 <IconButton>
-                  <InfoIcon />
-                </IconButton>
-                <IconButton title="Estadisticas general" onClick={()=>{ console.log(row.email);}}>
-                  <BarChartIcon />
+                  <DeleteIcon />
                 </IconButton>
               </TableCell>
             </TableRow>

@@ -78,7 +78,7 @@ function StudentHome() {
               <li className="nav-item my-2">
                 <Link to={'Rank'} className="nav-link text-white fs-5 d-flex align-items-center">
                   <i className='bi bi-table me-2'></i>
-                  <span>Temas</span>
+                  <span>Cuenta</span>
                 </Link>
               </li>
             </ul>

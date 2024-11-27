@@ -77,6 +77,7 @@ function ProgressAdmPag() {
             rankCarga ? <a>cargando...</a> :
               <RankTableComp
                 data={rankData}
+                setactividad={recargaractividad}
               />
           }
         </div>
