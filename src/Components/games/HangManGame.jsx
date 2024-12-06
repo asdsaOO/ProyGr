@@ -19,14 +19,19 @@ function HangManGame(props) {
   }, [props.word]); // Se ejecuta cada vez que cambia la palabra
 
   const handleInputChange = (e, index) => {
-    const newGuesses = [...guesses];
     const guessedLetter = e.target.value.toLowerCase();
+    const newGuesses = [...guesses];
 
-    // Verificar si la letra está en la palabra
     if (vertorWord[index] === guessedLetter) {
-      newGuesses[index] = guessedLetter;
+      // Letra correcta en la posición actual: desbloquear todas las ocurrencias
+      vertorWord.forEach((letter, i) => {
+        if (letter === guessedLetter) {
+          newGuesses[i] = guessedLetter;
+        }
+      });
       setGuesses(newGuesses);
     } else {
+      // Letra incorrecta, disminuir intentos
       setRemainingAttempts((prev) => prev - 1);
     }
 

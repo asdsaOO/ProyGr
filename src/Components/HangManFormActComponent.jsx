@@ -12,8 +12,8 @@ function HangManFormActComponent(props) {
 
   return (
 
-    <div className="row mb-4">
-      <div className="row mb-4">
+    <div className="row mb-1">
+      <div className="row mb-1">
         <div className="col-6">
           <InputComp
             text="Descripcion"
@@ -23,7 +23,7 @@ function HangManFormActComponent(props) {
           />
         </div>
       </div>
-      <div className="row mb-4">
+      <div className="row mb-1">
         <div className="col-6">
           <SelectFormComp
             text="Seleccionar Titulo:"
@@ -46,7 +46,7 @@ function HangManFormActComponent(props) {
           }
         </div>
       </div>
-      <div className="row mb-4">
+      <div className="row mb-1">
         <div className="col-6">
           <InputComp
             text="Pista"
@@ -66,7 +66,7 @@ function HangManFormActComponent(props) {
           />
         </div>
       </div>
-      <div className="row mb-3">
+      <div className="row mb-1">
         <div class="container d-flex justify-content-center">
             <HangManInputsComp 
               word={palagraClave}

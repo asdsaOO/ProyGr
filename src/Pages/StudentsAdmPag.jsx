@@ -8,7 +8,7 @@ import { ButtonFormComp } from "../Components/ButtonFormComp";
 import { TextAreaForm } from "../Components/TextAreaForm";
 import { InputComp } from "../Components/InputFormComp";
 function StudentsAdmPag(){
-  const [cargaPagina,datosPagina,recargarDatosPagina]=useFutureReloadable(control.datosPagina);
+  const [cargaPagina,datosPagina,recargarDatosPagina]=useFutureReloadable(control.datosPagina,1);
   const registroRapido= async(e)=>{
     e.preventDefault();
     const resp = await control.registroRapido(e);
@@ -43,7 +43,7 @@ function StudentsAdmPag(){
         confirmButtonText: 'aceptar'
 
       })
-      recargarDatosPagina();
+      recargarDatosPagina(1);
 
       return response;
     }else{
@@ -101,6 +101,27 @@ function StudentsAdmPag(){
       </div>
       </form>
       <div className="row border" style={{ overflowX: 'auto' }}>
+         <div className="row">
+          <div className="col-12 d-flex justify-content-center">
+            <div className="btn-group" role="group" aria-label="Opciones">
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={async () => { await recargarDatosPagina(1)}}
+              >
+                Estudiantes
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={async () => { await recargarDatosPagina(2)}}
+              >
+                Pasantes
+              </button>
+            </div>
+          </div>
+          </div>
+          <div>
         {
           cargaPagina?(<a>cargando</a>)
           :<StudentsTable
@@ -108,6 +129,7 @@ function StudentsAdmPag(){
             modificarEstado={habilitar_deshabiltiar}
           />
         }
+        </div>
         
 
       </div>

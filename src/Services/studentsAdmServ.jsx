@@ -2,8 +2,8 @@ import axios from "axios";
 const url ='http://localhost:3000/api/users'
 import * as secodaryservice from"../Services/sgnUpServ";
 
-async function listarEstudiantes (){
-  const response = (await axios.get(url+"/estudiantes",{withCredentials:true})).data;
+async function listarEstudiantes (data){
+  const response = (await axios.get(url+"/estudiantes",{withCredentials:true, params:data})).data;
   console.log(response);
   return response
   

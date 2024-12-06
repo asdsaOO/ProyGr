@@ -10,27 +10,33 @@ import { LeccionesTableComp } from '../../Components/tables/LeccionesTableComp';
 import { LessonsHistorialModal } from '../../Components/modales/LessonsHistorialModal';
 import * as resultServ from '../../Services/ProgresoServ';
 import { useModalCaller } from '../../Components/Hooks/useModalCaller';
+import { CargandoModal } from '../../Components/modales/CargandoModal';
+import { useFutureFetchData } from '../../Components/Hooks/useFutureFetchData';
 
 function LessonsPage() {
   const [cargandoLecciones, leccionesData, recargarLecciones] = useFutureReloadable(control.listarLeccionesRealizadas);
   const [dataDetalle,activoDetalleLeccionModal,activarDetalleLeccionModal,desactivarDetalleLeccionModal]= useModalCaller();
+  //cargas
+  const [cargaConsumo,respuestaConsumo,ejecConsumo] = useFutureFetchData(); 
 
   const navigate = useNavigate();
   const generarLeccion = async () => {
-    const leccionv = await control.obtenerLeccion();
-    console.log(leccionv);
-
+    const leccionv = await ejecConsumo(control.obtenerLeccion,null);
+    
     navigate('/studentHome/GameLesson', { state: leccionv })
   }
   return (
     <>
-      <div className='row mb-4 mt-4'>
+      <div className='row mb-1 mt-4 '>
         <ButtonFormComp
           texto="iniciar leccion rapida"
           onClick={generarLeccion}
         />
       </div>
-      <div className='row mb-4 mt-4'>
+      <div className='row mb-4 mt-4 border rounded border-dark p-2'>
+        <h2>
+          <span className="badge text-bg-secondary">Historial de Lecciones</span>
+        </h2>
         {
           !cargandoLecciones ? <LeccionesTableComp
             data={leccionesData}
@@ -45,6 +51,10 @@ function LessonsPage() {
                                     idLeccion={dataDetalle}
                                   />:null
       }
+      {
+        cargaConsumo?<CargandoModal/>:null
+      }
+
       
     </>
   )

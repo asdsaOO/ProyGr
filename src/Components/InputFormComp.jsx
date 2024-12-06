@@ -8,7 +8,7 @@ function InputComp(props) {
         <input
           name={props.name}
           type={props.type}
-          className="form-control rounded-3 shadow-sm p-3 border-2"
+          className="form-control rounded-3 shadow-sm p-2 border-2"
           id={props.id}
           placeholder={props.placeholder}
           defaultValue={props.defaultValue}
@@ -18,6 +18,7 @@ function InputComp(props) {
             borderWidth: "2px", // Aumenta ligeramente el grosor del borde
             fontSize: "1rem", // Tamaño de texto más moderado
           }}
+          readOnly={props.readOnly}
         />
       </div>
     </>

@@ -29,7 +29,7 @@ function ActivitiesAdmPag() {
         });
         
       }}>
-        <div className="row mb-4 mt-4  offset-1">
+        <div className="row mb-2 mt-4  offset-1 ">
           <div className="col-3">
             <CheckformComp
               checked={itemscheck[0]}
@@ -64,8 +64,11 @@ function ActivitiesAdmPag() {
         </div>
         {cargaPagina ?
           <a>Cargando...</a>
-          : <div className="row border shadow rounded">
-            <div className="row mb-3 mt-4 d-flex flex-column justify-content-center align-items-center">
+          : <div className="row border rounded border-dark">
+             <h2>
+              <span className="badge text-bg-secondary">Crear Actividades</span>
+             </h2>
+            <div className="row mb-3 mt-1 d-flex flex-column justify-content-center align-items-center">
               
               {
                 itemscheck[0] ?<ChooseFormActComponent
@@ -93,7 +96,10 @@ function ActivitiesAdmPag() {
 
       </form>
       <div className="mt-4">
-      <div className="row border rounded">
+      <div className="row border rounded border-dark p-2">
+        <h2>
+              <span className="badge text-bg-secondary">Actividades Registradas</span>
+        </h2>
         <div className="col-12">
         <ActivitiesTableComponent
           data={datosPagina.actividades}

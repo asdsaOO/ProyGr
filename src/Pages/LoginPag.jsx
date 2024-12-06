@@ -16,6 +16,7 @@ import { useFuture } from '../Components/Hooks/useFuture';
 import { SelectFormComp } from '../Components/SelectFormComp';
 import * as control from '../Controllers/loginControl';
 import Swal from 'sweetalert2';
+import { CarouselImageComp}  from '../Components/CarouselImageComp';
 
 function Copyright(props) {
   return (
@@ -74,13 +75,16 @@ export default function SignIn() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <CarouselImageComp
+          src='/images/nklogo.jpg'
+        />
+
+        
         <Typography component="h1" variant="h5">
-          Sign in
+          INGRESA
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -88,7 +92,7 @@ export default function SignIn() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Correo Electronico"
             name="inpEmail"
             autoComplete="email"
             autoFocus
@@ -112,15 +116,15 @@ export default function SignIn() {
           />
           <FormControlLabel
             control={<Checkbox name="checkRecordar" value="true" color="primary" />}
-            label="Remember me"
+            label="Recordar"
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{mt: 3, mb: 2,backgroundColor: '#B71C1C', color: 'white', '&:hover': { backgroundColor: 'darkred'} }}
           >
-            Sign In
+            Ingresar
           </Button>
           <Grid container>
             <Grid item xs>

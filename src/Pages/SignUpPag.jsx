@@ -14,6 +14,7 @@ import * as controller from '../Controllers/signUpControl';
 import { SelectFormComp } from '../Components/SelectFormComp';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { CarouselImageComp } from '../Components/CarouselImageComp';
 
 function Copyright(props) {
   return (
@@ -80,11 +81,11 @@ export default function SignUp() {
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
+        <CarouselImageComp
+          src='/images/nklogo.jpg'
+        />
         <Typography component="h1" variant="h5">
-          Sign up
+          REGISTRATE
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -95,7 +96,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label="Nombre"
                 autoFocus
               />
             </Grid>
@@ -104,7 +105,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label="Apellido"
                 name="inpApellido"
                 autoComplete="family-name"
               />
@@ -155,9 +156,9 @@ export default function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2,backgroundColor: '#B71C1C', color: 'white', '&:hover': { backgroundColor: 'darkred'}  }}
           >
-            Sign Up
+            Registrase
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>

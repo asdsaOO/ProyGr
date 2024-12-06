@@ -11,8 +11,10 @@ import { HomePag } from "../HomePag";
 import { StudentHome } from "../StudentPages/StudentHome";
 import { LessonsPage } from "../StudentPages/LessonsPAge";
 import { ProgressPage } from "../StudentPages/ProgresoPAge";
-import { RankPage } from "../StudentPages/RankPage";
+import { ProfilePage } from "../StudentPages/ProfilePage";
 import { GamePage } from "../StudentPages/GAmePage";
+import { AdmProfilePage } from "../AdmProfilePage";
+import { RankPag } from "../StudentPages/RankPage";
 function routerApp (){
   return createBrowserRouter([
     {
@@ -45,6 +47,10 @@ function routerApp (){
           element:<ActivitiesAdmPag/>
         },
         {
+          path:"Profile",
+          element:<AdmProfilePage/>
+        },
+        {
           path: "",
           element: <Navigate to="Topics" replace />,
         }
@@ -65,17 +71,23 @@ function routerApp (){
           element: <ProgressPage/>
         },
         {
-          path:"Rank",
-          element: <RankPage/>
+          path:"Profile",
+          element: <ProfilePage/>
         },
         {
           path:"GameLesson",
           element:<GamePage/>
         },
         {
+          path: "Rank",
+          element: <RankPag/>
+
+        },
+        {
           path: "",
           element: <Navigate to="Lessons" replace />,
         }
+
       ]
     }
   ])

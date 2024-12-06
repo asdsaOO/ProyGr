@@ -5,7 +5,7 @@ function SelectFormComp(props) {
     <div hidden={props.hide} >
       <label htmlFor={props.id} className="form-label fs-6 text-dark fw-bold">{props.text}</label>
       <select
-        className="form-select rounded-3 shadow-sm p-3 border-2"
+        className="form-select rounded-3 shadow-sm p-2 border-2"
         aria-label="Default select example"
         id={props.id}
         name={props.name}

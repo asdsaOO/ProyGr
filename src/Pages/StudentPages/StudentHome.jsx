@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../../Style/SideNav.css';
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ImageComponent } from "../../Components/ImageComponent";
 
 function StudentHome() {
   const [isSidebarVisible, setSidebarVisible] = useState(true);
@@ -20,7 +21,10 @@ function StudentHome() {
           <button className="btn btn-dark me-3" onClick={toggleSidebar}>
             <i className="bi bi-list fs-4"></i> {/* Icono de menú */}
           </button>
-          <span className="navbar-brand fs-4">NK Academy</span>
+          <span className="navbar-brand fs-4">NK Academia</span>
+          <ImageComponent src='/images/nklogo2.JPG' width='50px' height='50px'/>
+
+          
           
           {/* Colapsado del dropdown en móvil */}
           <button 
@@ -50,7 +54,6 @@ function StudentHome() {
                 <span className="ms-2 d-none d-sm-inline">Cuenta</span>
               </a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                <li><a className="dropdown-item" href="#">Datos de Usuario</a></li>
                 <li><a className="dropdown-item" href="#" onClick={() => navigate('/')}>Salir de Cuenta</a></li>
               </ul>
             </div>
@@ -71,16 +74,23 @@ function StudentHome() {
               </li>
               <li className="nav-item my-2">
                 <Link to={'Progress'} className="nav-link text-white fs-5 d-flex align-items-center">
-                  <i className='bi bi-house me-2'></i>
-                  <span>Rank</span>
+                  <i className='bi bi-graph-up-arrow me-2'></i>
+                  <span>Seguimiento</span>
                 </Link>
               </li>
               <li className="nav-item my-2">
                 <Link to={'Rank'} className="nav-link text-white fs-5 d-flex align-items-center">
-                  <i className='bi bi-table me-2'></i>
-                  <span>Cuenta</span>
+                  <i className='bi bi-speedometer me-2'></i>
+                  <span>Rank-Rango</span>
                 </Link>
               </li>
+              <li className="nav-item my-2">
+                <Link to={'Profile'} className="nav-link text-white fs-5 d-flex align-items-center">
+                  <i className='bi bi-person-circle me-2'></i>
+                  <span>Perfil</span>
+                </Link>
+              </li>
+              
             </ul>
           </div>
         )}

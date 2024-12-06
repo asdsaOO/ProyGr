@@ -18,7 +18,7 @@ function ActivityLineChartComp({ data }) {
     <Box sx={{ marginTop: 3 }}>
       <Paper sx={{ padding: 2, textAlign: 'center' }}>
         <Typography variant="h6">Lecciones por Día de la Semana</Typography>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={250}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="day" />

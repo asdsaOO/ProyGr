@@ -1,9 +1,12 @@
 import * as service from "../Services/studentsAdmServ";
 import { getError } from "../models/errResponse";
 
-async function datosPagina (){
+async function datosPagina (estTipo){
+  const estDataSend ={
+    tipo:estTipo
+  }
   try{
-  const estudiantesData =  await service.listarEstudiantes();
+  const estudiantesData =  await service.listarEstudiantes(estDataSend);
   const data ={
     estudiantes: estudiantesData
   }

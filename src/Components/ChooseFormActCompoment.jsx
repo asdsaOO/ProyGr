@@ -16,7 +16,7 @@ function ChooseFormActComponent(props) {
   
   return (
     <div className="row mb-4 ">
-        <div className="row mb-4 ">
+        <div className="row mb-1 ">
 
           <div className="col-6">
             <InputComp
@@ -28,7 +28,7 @@ function ChooseFormActComponent(props) {
           </div>
 
         </div>
-        <div className="row mb-4">
+        <div className="row mb-1">
           <div className="col-6">
             <SelectFormComp
               text="Titulo:"
@@ -54,7 +54,7 @@ function ChooseFormActComponent(props) {
             
           </div>
         </div>
-        <div className="row mb-4">
+        <div className="row mb-1">
           <div className="col-6">
             <InputComp
               text="Pregunta"
@@ -64,8 +64,8 @@ function ChooseFormActComponent(props) {
             />
           </div>
         </div>
-        <div className="row mb-4">
-          <div className="row mb-2 ">
+        <div className="row mb-1">
+          <div className="row mb-1 ">
             <div className="col-auto pt-4 ">
               <CheckformComp
                 index={0}
@@ -87,7 +87,7 @@ function ChooseFormActComponent(props) {
               />
             </div>
           </div>
-          <div className="row mb-2">
+          <div className="row mb-1">
             <div className="col-auto pt-4">
               <CheckformComp
                 index={1}
@@ -109,7 +109,7 @@ function ChooseFormActComponent(props) {
               />
             </div>
           </div>
-          <div className="row mb-2">
+          <div className="row mb-1">
             <div className="col-auto pt-4">
               <CheckformComp
                 index={2}

@@ -27,7 +27,7 @@ function CompleteFormActComponent(props) {
 
   return (
     <div className="row mb-4">
-      <div className="row mb-4">
+      <div className="row mb-1">
         <div className="col-6">
           <InputComp
             text="Descripcion"
@@ -47,7 +47,7 @@ function CompleteFormActComponent(props) {
           />
         </div>
       </div>
-      <div className="row mb-4">
+      <div className="row mb-1">
         <div className="col-6">
           <SelectFormComp
             text="Seleccionar Titulo:"
@@ -71,7 +71,7 @@ function CompleteFormActComponent(props) {
           }
         </div>
       </div>
-      <div className="row mb-4">
+      <div className="row mb-1">
         <div className="col-10 offset-1">
           <TextAreaForm
             text="Frase"
@@ -82,7 +82,7 @@ function CompleteFormActComponent(props) {
           />
         </div>
       </div>
-      <div className="row mb-4">
+      <div className="row mb-1">
         <div className="col-10 offset-1">
           <TextAreaForm
             text="Frase generada"

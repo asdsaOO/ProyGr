@@ -27,7 +27,7 @@ function TopicsAdmPag() {
         text: 'Se elimino el tema',
         icon: 'success',
         confirmButtonText: 'aceptar'
-      }).then((result)=>result.isConfirmed?window.location.reload():bull)
+      }).then((result)=>result.isConfirmed?window.location.reload():null)
     }else{
       Swal.fire({
         title:'Error',

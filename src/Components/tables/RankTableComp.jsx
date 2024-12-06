@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Typography, Tooltip } from '@mui/material';
 import { ArrowDropDown, ArrowDropUp, BarChart } from '@mui/icons-material';
 
-function RankTableComp({ data , setactividad}) {
+function RankTableComp({ data , setactividad,setRendimiento}) {
   const competidores = data || []; // Aseguramos que `competidores` sea un array vacío si no hay datos
 
   return (
@@ -54,7 +54,7 @@ function RankTableComp({ data , setactividad}) {
                 </TableCell>
                 <TableCell align="center" sx={{ padding: '4px', fontSize: '0.75rem' }}>
                   <Tooltip title="Ver actividad" arrow>
-                    <IconButton size="small" onClick={() => { setactividad(row.id)}}>
+                    <IconButton size="small" onClick={() => { setactividad(row.id); setRendimiento({e:null,idUsuario:row.id})}}>
                       <BarChart fontSize="small" />
                     </IconButton>
                   </Tooltip>

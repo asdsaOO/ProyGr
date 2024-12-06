@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 0 80 30" width="100" height="30">
+  <!-- Primer punto -->
+  <circle cx="25" cy="15" r="5" fill="#000">
+    <animate attributeName="cy" values="15;5;15" dur="1s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+  </circle>
+
+  <!-- Segundo punto -->
+  <circle cx="50" cy="15" r="5" fill="#000">
+    <animate attributeName="cy" values="15;5;15" dur="1s" begin="0.2s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+  </circle>
+
+  <!-- Tercer punto -->
+  <circle cx="75" cy="15" r="5" fill="#000">
+    <animate attributeName="cy" values="15;5;15" dur="1s" begin="0.4s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+  </circle>
+</svg>
