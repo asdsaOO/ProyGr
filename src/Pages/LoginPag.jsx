@@ -51,9 +51,9 @@ export default function SignIn() {
       //navigate('/Home');
       const rol = parseInt(control.getUserRoleFromCookie());
       console.log(rol);
-      if(rol===1){
+      if(rol<=3){
         navigate('/Home');
-      }else if(rol===4){
+      }else if(rol ===4){
         navigate('/studentHome');
 
       }else{
