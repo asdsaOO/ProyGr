@@ -19,4 +19,9 @@ async function registro_rapido(data){
   
   return response;
 }
-export {listarEstudiantes,habilitarEstudiante,registro_rapido}
+
+async function eliminarEstudiante(data){
+  const response = (await (axios.post(url + "/eliminarEstudiante",data,{withCredentials:true}))).data;
+  return response;
+}
+export {listarEstudiantes,habilitarEstudiante,registro_rapido,eliminarEstudiante}

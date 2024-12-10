@@ -20,7 +20,7 @@ function MultipleOptionsGame({ question, options, answer,handleResult }) {
       handleResult(true);
       
     } else {
-      setFeedback('Incorrecto. Intenta nuevamente.');
+      setFeedback('Incorrecto la respuesta era: '+answer);
       setAlertVariant('danger'); // Color rojo para incorrecto
       handleResult(false);
     }

@@ -23,11 +23,11 @@ function RankPag() {
             <>
               <div>
                 {rankDatos?.[0]?.idrango === 1 ? (
-                  <ImageComponent src="/images/eplorador.png" height="80px" width="80px" />
+                  <ImageComponent src="/images/explorador.png" height="100px" width="100px" />
                 ) : rankDatos?.[0]?.idrango === 2 ? (
-                  <ImageComponent src="/images/conquistador.png" height="80px" width="80px" />
+                  <ImageComponent src="/images/conquistador.png" height="100px" width="100px" />
                 ) : rankDatos?.[0]?.idrango === 3 ? (
-                  <ImageComponent src="/images/maestroNeuroanatomico.png" />
+                  <ImageComponent src="/images/maestroNeuroanatomico.png" height="100px" width="100px"/>
                 ) : null}
               </div>
               <p>{pagData?.datosRango?.descripcion || 'Descripción no disponible'}</p>

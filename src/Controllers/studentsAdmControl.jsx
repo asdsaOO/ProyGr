@@ -36,6 +36,25 @@ async function habilitarEstudiante (data){
   return getError('ERROR: Controlador');
 }
 }
+async function eliminarEstudiante (data){
+  console.log(data);
+  
+  
+  try{
+  console.log('datos de controlador'+JSON.stringify(data));
+  const dataSend={
+    idUsuario:data.id
+  }
+  console.log('datos a enviar'+JSON.stringify(dataSend));
+  const response = await service.eliminarEstudiante(dataSend);
+  console.log(response);
+  
+  return response;
+}catch(e){
+  console.log(e);
+  return getError('ERROR: Controlador');
+}
+}
 
 async function registroRapido(e){
   const formData = new FormData(e.target);
@@ -51,4 +70,4 @@ async function registroRapido(e){
   return response;
 }
 
-export{datosPagina,habilitarEstudiante,registroRapido}
+export{datosPagina,habilitarEstudiante,registroRapido,eliminarEstudiante}

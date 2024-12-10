@@ -25,7 +25,7 @@ const CompletarFrase = ({ enunciado, palabraClave, handleResult }) => {
       setMensaje("¡Correcto! La palabra es correcta.");
     } else {
       setEsCorrecto(false);
-      setMensaje("Incorrecto. Intenta de nuevo.");
+      setMensaje("Incorrecto la respuesta es: "+palabraClave);
       handleResult(false);
     }
   };

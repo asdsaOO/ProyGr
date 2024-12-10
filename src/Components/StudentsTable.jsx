@@ -43,7 +43,7 @@ const StudentsTable = (props) => {
               <TableCell align="center">{row.email}</TableCell> {/* Ejemplo de acceso a rewards */}
               <TableCell align="center"><SwitchComp data={{id:row.id,habilitado:row.habilitado}}check={row.habilitado} onChange={props.modificarEstado}/></TableCell>
               <TableCell align="center">
-                <IconButton>
+                <IconButton onClick={()=>{props.eliminarEstudiante({id:row.id})}}>
                   <DeleteIcon />
                 </IconButton>
               </TableCell>

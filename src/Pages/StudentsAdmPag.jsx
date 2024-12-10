@@ -20,7 +20,7 @@ function StudentsAdmPag(){
         confirmButtonText: 'aceptar'
 
       })
-      recargarDatosPagina();
+      recargarDatosPagina(1);
 
     }else{
       Swal.fire({
@@ -39,6 +39,29 @@ function StudentsAdmPag(){
       Swal.fire({
         title:'Cambio realizado',
         text: 'se cambio el estado de habilitado del estudiante',
+        icon:'success',
+        confirmButtonText: 'aceptar'
+
+      })
+      recargarDatosPagina(1);
+
+      return response;
+    }else{
+      Swal.fire({
+        title:'Error',
+        text: 'Error: '+response[0].omessage,
+        icon:'error',
+        confirmButtonText:'aceptar'
+      })
+    }
+  }
+  const eliminarEstudiante= async(data)=>{
+    console.log(data);
+    const response = await control.eliminarEstudiante(data);
+    if(response[0].oboolean){
+      Swal.fire({
+        title:'Realizado',
+        text: 'Se elimino el estudiante',
         icon:'success',
         confirmButtonText: 'aceptar'
 
@@ -127,6 +150,7 @@ function StudentsAdmPag(){
           :<StudentsTable
             datos={datosPagina.estudiantes}
             modificarEstado={habilitar_deshabiltiar}
+            eliminarEstudiante={eliminarEstudiante}
           />
         }
         </div>

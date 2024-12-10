@@ -1,4 +1,3 @@
-
 .container {
   background-color: white;
   padding: 20px;
@@ -20,7 +19,9 @@ h1 {
 
 .inputWrapper {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap; /* Permite que los inputs se envuelvan a la siguiente línea */
+  justify-content: center; /* Centra los inputs */
+  gap: 10px; /* Espacio entre los inputs */
 }
 
 .letterInput {

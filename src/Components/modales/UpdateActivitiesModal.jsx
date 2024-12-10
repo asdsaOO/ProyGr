@@ -11,7 +11,7 @@ function UpdateActivitiesModal(props) {
   return (
     <>
       <div className="modal fade show d-block" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-lg">
           <form onSubmit={(e)=>{
             props.onSubmit(e);
             props.closeModal();
