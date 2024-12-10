@@ -1,2 +1,2 @@
 # ProyGr
-prototipo de sistema para apoyar a anatomia
+prototipo de aplicacion web para hacer quest de neuroanatomia
